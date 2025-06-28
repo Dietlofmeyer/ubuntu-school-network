@@ -12,11 +12,18 @@ const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error('Root element with id "root" not found');
 }
+
+// Determine base name for router based on environment
+const basename =
+  process.env.NODE_ENV === "production" && process.env.GITHUB_PAGES === "true"
+    ? "/ubuntu-school-network"
+    : "";
+
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <MantineProvider defaultColorScheme="dark" theme={{}}>
     <Notifications />
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <AuthProvider>
         <App />
       </AuthProvider>

@@ -9,7 +9,7 @@
   - Reflects the interconnectedness of students, teachers, parents, and administrators
   - Modern, inclusive branding suitable for South African primary and secondary schools
 - **Updated Branding:** All project files and documentation updated with new name
-  - Package name changed to `ubuntu-school-network` 
+  - Package name changed to `ubuntu-school-network`
   - Page title and README completely refreshed
   - Deployment configurations updated for new repository structure
   - Professional documentation highlighting features and tech stack
