@@ -147,7 +147,19 @@ const SchoolRegistrationReview: React.FC = () => {
       setReviewNotes("");
     } catch (err: any) {
       console.error("Error approving registration:", err);
-      setError("Failed to approve registration");
+      
+      // Provide more specific error messages
+      let errorMessage = "Failed to approve registration";
+      
+      if (err.message?.includes("Permission denied")) {
+        errorMessage = "Permission denied: You don't have the required permissions. Please ensure you have developer privileges.";
+      } else if (err.message?.includes("Service temporarily unavailable")) {
+        errorMessage = "Service temporarily unavailable. Please try again in a few moments.";
+      } else if (err.message) {
+        errorMessage = `Failed to approve registration: ${err.message}`;
+      }
+      
+      setError(errorMessage);
     } finally {
       setProcessingId(null);
     }

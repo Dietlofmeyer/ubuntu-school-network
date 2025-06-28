@@ -66,9 +66,17 @@ export class SecureRegistrationService {
     try {
       await addDoc(collection(db, this.COLLECTION_NAME), registrationToken);
       return token;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error creating registration token:", error);
-      throw new Error("Failed to create registration token");
+      
+      // Provide more specific error messages
+      if (error.code === 'permission-denied') {
+        throw new Error("Permission denied: You don't have the required permissions to create registration tokens. Please ensure you have developer privileges.");
+      } else if (error.code === 'unavailable') {
+        throw new Error("Service temporarily unavailable. Please try again in a few moments.");
+      } else {
+        throw new Error(`Failed to create registration token: ${error.message || 'Unknown error'}`);
+      }
     }
   }
 

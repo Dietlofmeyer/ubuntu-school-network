@@ -388,24 +388,26 @@
 
 /* Token Section Styles */
 .token-section {
-  background: var(--color-success-bg, #d4edda);
-  border: 1px solid var(--color-success, #28a745);
+  background: #d4edda;
+  border: 1px solid #28a745;
   border-radius: 8px;
   padding: 1.5rem;
   margin-top: 1rem;
 }
 
 .token-section h3 {
-  color: var(--color-success, #28a745);
+  color: #155724;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 600;
 }
 
 .token-info p {
   margin-bottom: 1rem;
-  color: var(--color-text);
+  color: #155724;
+  font-weight: 500;
 }
 
 .url-display {
@@ -416,7 +418,7 @@
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: #155724;
 }
 
 .url-container {
@@ -427,13 +429,14 @@
 .token-url {
   flex: 1;
   padding: 0.75rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid #ced4da;
   border-radius: 4px;
-  background: var(--color-bg-secondary);
-  color: var(--color-text);
+  background: #ffffff;
+  color: #495057;
   font-family: monospace;
   font-size: 0.9rem;
   word-break: break-all;
+  font-weight: 500;
 }
 
 .copy-btn {
@@ -452,15 +455,16 @@
 }
 
 .token-instructions {
-  background: var(--color-bg-secondary);
+  background: #f8f9fa;
   padding: 1rem;
   border-radius: 4px;
-  border-left: 4px solid var(--color-primary);
+  border-left: 4px solid #28a745;
 }
 
 .token-instructions h4 {
   margin-bottom: 0.5rem;
-  color: var(--color-primary);
+  color: #155724;
+  font-weight: 600;
 }
 
 .token-instructions ol {
@@ -470,8 +474,9 @@
 
 .token-instructions li {
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: #495057;
   line-height: 1.4;
+  font-weight: 500;
 }
 
 .btn-primary {
