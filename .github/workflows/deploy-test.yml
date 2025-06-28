@@ -1,13 +1,11 @@
-name: Deploy to GitHub Pages (Testing)
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main, master, develop, test]
-  pull_request:
-    branches: [main, master]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,6 +14,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/test'
 
     steps:
       - name: Checkout
@@ -35,7 +34,6 @@ jobs:
         env:
           NODE_ENV: production
           GITHUB_PAGES: true
-          GITHUB_PAGES: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -48,4 +46,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/test'
