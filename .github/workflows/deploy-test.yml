@@ -35,6 +35,7 @@ jobs:
         env:
           # Add any environment variables needed for build
           NODE_ENV: production
+          GITHUB_PAGES: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
