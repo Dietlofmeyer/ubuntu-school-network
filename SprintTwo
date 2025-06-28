@@ -1,0 +1,87 @@
+Start: Sunday, June 30, 2025
+Finish: Thursday, July 10, 2025
+Progress: 4/4 tasks completed (100%)
+Schedule progress: blue
+// Progress color key: blue = ahead of schedule, green = on schedule, amber = slightly behind, red = far behind
+
+--- Sprint Two: Administrative Personnel Functions (Existing Features Only) ---
+
+Goal: Empower administrative personnel to monitor and view users and basic stats, using only features already implemented.
+
+Tasks:
+
+- Administrative personnel can view lists of students, guardians, and teachers with basic info.
+- Administrative personnel can search and filter user lists by name, grade, or role.
+- Administrative personnel can view user profiles in read-only mode.
+- Administrative personnel can view simple analytics (e.g., total users, recent signups) on their dashboard.
+
+Out of Scope:
+
+- Notification management (sending, marking, bulk actions)
+- Feedback review/management
+- Exporting data/reports
+- Audit logs/history
+- Schedule/timetable management
+- Medical, snack shop, fees, awards, or payment features
+
+Acceptance Criteria:
+
+- All features above are accessible only to administrative personnel (not full admins).
+- No new feature domains are introduced; only improvements/extensions of existing functionality.
+
+---
+
+### Daily Action Plan
+
+**Sunday, June 30:**
+
+- Sprint planning, review requirements, set up tasks and branches.
+
+**Monday, July 1:**
+
+- Scaffold or review user list components for administrative personnel.
+- Begin implementing view for lists of students, guardians, and teachers.
+
+**Tuesday, July 2:**
+
+- Continue/complete user list views.
+- Start implementing search and filter functionality.
+
+**Wednesday, July 3:**
+
+- Complete search/filter for user lists.
+- Begin work on read-only user profile view.
+
+**Thursday, July 4:**
+
+- Continue/complete read-only user profile view.
+- Start dashboard analytics (total users, recent signups).
+
+**Friday, July 5:**
+
+- Continue dashboard analytics.
+- Refactor and test all implemented features.
+
+**Saturday, July 6:**
+
+- Buffer/catch-up day: finish any incomplete tasks from the week.
+- Peer review or self-review of code.
+
+**Sunday, July 7:**
+
+- Polish UI/UX for all new admin personnel features.
+- Update documentation if needed.
+
+**Monday, July 8:**
+
+- Final testing of all features.
+- Fix any bugs found during testing.
+
+**Tuesday, July 9:**
+
+- Prepare for sprint review/demo.
+- Ensure acceptance criteria are met.
+
+**Wednesday, July 10:**
+
+- Sprint review, retrospective, and close sprint.

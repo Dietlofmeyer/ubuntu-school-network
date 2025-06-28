@@ -1,0 +1,94 @@
+Project Overview
+----------------
+This is a modern, modular school management web application built with React. It supports multiple user roles—students, teachers, and parents—each with their own dashboard and tailored features. The app is designed for accessibility, responsiveness, and ease of use across all devices.
+
+Key Features & Actions Taken
+---------------------------
+- User Roles & Dashboards:
+  - Students: View report cards, marks, and demerits.
+  - Teachers: Submit report cards, manage marks, handle demerits, and process deletion requests.
+  - Parents: Register, link to children, receive notifications, acknowledge marks/demerits, and request account deletion.
+
+- Localization:
+  - Full support for English and Afrikaans.
+  - All UI text is managed via i18n JSON files (en.json, af.json).
+  - Language can be switched in user settings.
+
+- Theming:
+  - CSS variables define all theme colors in theme.css.
+  - Light, dark, and sport themes are available.
+  - Theme selection is persistent (via localStorage) and instantly applied.
+  - All dashboards and modals use theme variables for consistent styling.
+
+- Deletion Requests:
+  - Parents can request deletion of their own accounts.
+  - Teachers (especially homeroom teachers) can view and process both parent and child deletion requests.
+  - Deletion requests are split into separate sections for clarity.
+  - Approve/deny buttons are styled according to their action (success/danger) and use theme variables.
+  - Requests are sorted by date (latest first).
+
+- UI/UX Improvements:
+  - Modals and dashboards are responsive and accessible.
+  - All action buttons and cards update color based on the active theme.
+  - Improved color contrast and accessibility across all themes.
+  - Parent dashboard and child cards fully support theme switching.
+
+- Development Process:
+  - Agile, task-driven workflow with a visible todo list and changelog.
+  - Features are broken down into daily tasks, with clear progress tracking.
+  - The project is ahead of schedule and regularly reviewed for polish and consistency.
+
+Recent Actions in This Session
+-----------------------------
+- Improved the parent account deletion workflow and UI.
+- Ensured all deletion-related actions use theme variables for color.
+- Split parent and child deletion requests into separate sections for clarity.
+- Updated localization files for new and improved features.
+- Ensured all lists and modals use the correct data and display logic for each user role.
+- Clarified the purpose of "your deletion requests" vs. "all deletion requests".
+
+File Structure
+--------------
+/React/Sandbox/Test/
+├── CHANGELOG.md
+├── todo.txt
+├── src/
+│   ├── Components/
+│   │   ├── Parent/
+│   │   │   ├── ParentDash.tsx
+│   │   │   ├── ParentSettingsModal.tsx
+│   │   │   ├── ParentDeletionRequests.tsx
+│   │   ├── Teacher/
+│   │   │   ├── TeacherDash.tsx
+│   │   │   └── subcomponents/
+│   │   │       └── components/
+│   │   │           └── TeacherDeletionRequests.tsx
+│   │   ├── Student/
+│   │   │   └── (student-related components, implied)
+│   │   └── (other shared or role-based components)
+│   ├── i18n/
+│   │   ├── en.json
+│   │   └── af.json
+│   ├── theme.css
+│   ├── ThemeContext.ts
+│   ├── firebase.ts
+│   ├── data/
+│   │   └── constants.js
+│   └── utils/
+│       └── term.js
+
+- Components are organized by user role and feature for clarity and maintainability.
+- i18n holds all localization files.
+- theme.css contains global CSS variables for theming.
+- ThemeContext.ts manages theme state and options.
+- firebase.ts handles Firebase configuration.
+- data/ and utils/ provide constants and utility functions.
+
+Summary
+-------
+Your project is a robust, scalable school management platform with:
+- Clear separation of concerns and modular code.
+- Strong support for theming and localization.
+- Responsive, accessible UI for all user roles.
+- Well-documented progress and agile development practices.
+- A file structure that supports rapid development and easy

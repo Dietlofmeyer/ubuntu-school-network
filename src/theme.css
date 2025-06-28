@@ -1,0 +1,281 @@
+/* theme.css */
+:root {
+  --color-bg: #181a1f;
+  --color-bg-card: #23232b;
+  --color-bg-card-alt: #23262e;
+  --color-primary: #b47bff;
+  --color-primary-hover: #9a5fff;
+  --color-accent: #4fd1ff;
+  --color-accent2: #4fd18b;
+  --color-danger: #ff6b6b;
+  --color-warning: #ffe066;
+  --color-success: #4caf50;
+  --color-text: #eaf1fb;
+  --color-text-secondary: #b0b8c1;
+  --color-text-inverse: #fff;
+  --color-muted: #b0b8c1;
+  --color-btn-text: #fff;
+  --color-btn-gradient: linear-gradient(90deg, #4fd1ff 0%, #b47bff 100%);
+  --color-btn-gradient-hover: linear-gradient(90deg, #4fd18b 0%, #b47bff 100%);
+  --color-disabled: #4a4a4a;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-surface: #23232b;
+  --color-input-background: #2a2a32;
+  --color-error: #ff6b6b;
+  --color-error-light: rgba(255, 107, 107, 0.15);
+  --gradient-background: linear-gradient(
+    135deg,
+    #181a1f 0%,
+    #23232b 50%,
+    #2a2a32 100%
+  );
+  --color-border-light: rgba(255, 255, 255, 0.15);
+  --color-primary-light: rgba(180, 123, 255, 0.3);
+  --color-success-hover: #45a049;
+  --color-danger-hover: #e55a5a;
+  --color-danger-bg: rgba(255, 107, 107, 0.1);
+
+  /* Role Badge Colors */
+  --color-role-student-bg: rgba(79, 209, 255, 0.2);
+  --color-role-student: #4fd1ff;
+  --color-role-guardian-bg: rgba(180, 123, 255, 0.2);
+  --color-role-guardian: #b47bff;
+  --color-role-teacher-bg: rgba(79, 209, 139, 0.2);
+  --color-role-teacher: #4fd18b;
+  --color-role-admin-bg: rgba(255, 107, 107, 0.2);
+  --color-role-admin: #ff6b6b;
+  --color-role-staff-bg: rgba(255, 224, 102, 0.2);
+  --color-role-staff: #ffe066;
+
+  /* Additional CSS variables for Guardian Dashboard */
+  --color-bg-primary: var(--color-bg);
+  --color-bg-secondary: rgba(255, 255, 255, 0.05);
+  --color-bg-tertiary: rgba(255, 255, 255, 0.08);
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-primary-dark: #9a5fff;
+  --color-primary-light: rgba(180, 123, 255, 0.15);
+  --color-success-dark: #45a049;
+  --color-success-light: rgba(76, 175, 80, 0.15);
+  --color-danger-dark: #e55a5a;
+  --color-danger-light: rgba(255, 107, 107, 0.15);
+  --font-family-primary: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --color-bg: #f7f8fa;
+  --color-bg-card: #fff;
+  --color-bg-card-alt: #f3f4fa;
+  --color-primary: #7b3fff;
+  --color-primary-hover: #6929ff;
+  --color-accent: #1faaff;
+  --color-accent2: #4fd18b;
+  --color-danger: #ff6b6b;
+  --color-warning: #ffe066;
+  --color-success: #4caf50;
+  --color-text: #232946;
+  --color-text-secondary: #7a7e8a;
+  --color-text-inverse: #fff;
+  --color-muted: #7a7e8a;
+  --color-btn-text: #fff;
+  --color-btn-gradient: linear-gradient(90deg, #1faaff 0%, #7b3fff 100%);
+  --color-btn-gradient-hover: linear-gradient(90deg, #4fd18b 0%, #7b3fff 100%);
+  --color-disabled: #bdbdbd;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-surface: #fff;
+  --color-input-background: #f8f9fa;
+  --color-error: #ff6b6b;
+  --color-error-light: rgba(255, 107, 107, 0.1);
+  --gradient-background: linear-gradient(
+    135deg,
+    #f7f8fa 0%,
+    #fff 50%,
+    #f3f4fa 100%
+  );
+  --color-demerit-gradient: linear-gradient(90deg, #ff8fa3 0%, #7b3fff 100%);
+  --color-demerit-gradient-hover: linear-gradient(
+    90deg,
+    #ff6b6b 0%,
+    #7b3fff 100%
+  );
+  --color-demerit: #ff8fa3;
+
+  /* Role Badge Colors */
+  --color-role-student-bg: rgba(31, 170, 255, 0.15);
+  --color-role-student: #1faaff;
+  --color-role-guardian-bg: rgba(123, 63, 255, 0.15);
+  --color-role-guardian: #7b3fff;
+  --color-role-teacher-bg: rgba(79, 209, 139, 0.15);
+  --color-role-teacher: #4fd18b;
+  --color-role-admin-bg: rgba(255, 107, 107, 0.15);
+  --color-role-admin: #ff6b6b;
+  --color-role-staff-bg: rgba(255, 224, 102, 0.15);
+  --color-role-staff: #ffe066;
+
+  /* Additional CSS variables for Guardian Dashboard */
+  --color-bg-primary: var(--color-bg);
+  --color-bg-secondary: rgba(0, 0, 0, 0.03);
+  --color-bg-tertiary: rgba(0, 0, 0, 0.05);
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-primary-dark: #6929ff;
+  --color-primary-light: rgba(123, 63, 255, 0.1);
+  --color-success-dark: #45a049;
+  --color-success-light: rgba(76, 175, 80, 0.1);
+  --color-danger-dark: #e55a5a;
+  --color-danger-light: rgba(255, 107, 107, 0.1);
+  --font-family-primary: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Sport Theme */
+[data-theme="sport"] {
+  --color-bg: #f4f8fb;
+  --color-bg-card: #ffffff;
+  --color-bg-card-alt: #eaf6ff;
+  --color-primary: #1eae60; /* Sporty green */
+  --color-primary-hover: #1a9954;
+  --color-accent: #1877f2; /* Energetic blue */
+  --color-accent2: #ffb300; /* Gold/yellow for highlights */
+  --color-danger: #e53935; /* Red for errors/warnings */
+  --color-warning: #ffb300; /* Gold/yellow for warnings */
+  --color-success: #4caf50;
+  --color-text: #1a2a36; /* Dark navy text */
+  --color-text-secondary: #7a869a; /* Muted gray-blue */
+  --color-text-inverse: #fff;
+  --color-muted: #7a869a; /* Muted gray-blue */
+  --color-btn-gradient: linear-gradient(90deg, #1eae60 0%, #1877f2 100%);
+  --color-btn-gradient-hover: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  --color-btn-text: #fff;
+  --color-disabled: #bdbdbd;
+  --color-border: #b2dfdb;
+  --color-surface: #ffffff;
+  --color-input-background: #f8fffe;
+  --color-error: #e53935;
+  --color-error-light: rgba(229, 57, 53, 0.1);
+  --gradient-background: linear-gradient(
+    135deg,
+    #f4f8fb 0%,
+    #ffffff 50%,
+    #eaf6ff 100%
+  );
+  --color-shadow-card: rgba(30, 174, 96, 0.08);
+  --color-shadow-btn: rgba(24, 119, 242, 0.12);
+  --color-shadow-btn-hover: rgba(30, 174, 96, 0.18);
+  --color-shadow-section: rgba(24, 119, 242, 0.06);
+  --color-shadow-avatar: rgba(30, 174, 96, 0.1);
+  --color-shadow-modal: rgba(24, 119, 242, 0.18);
+  --color-modal-bg: rgba(30, 174, 96, 0.1);
+  --color-avatar-gradient: linear-gradient(135deg, #1eae60 0%, #1877f2 100%);
+  --color-demerit-gradient: linear-gradient(90deg, #ffb300 0%, #1eae60 100%);
+  --color-demerit-gradient-hover: linear-gradient(
+    90deg,
+    #e53935 0%,
+    #1eae60 100%
+  );
+  --color-demerit: #ffb300;
+
+  /* Role Badge Colors */
+  --color-role-student-bg: rgba(24, 119, 242, 0.15);
+  --color-role-student: #1877f2;
+  --color-role-guardian-bg: rgba(30, 174, 96, 0.15);
+  --color-role-guardian: #1eae60;
+  --color-role-teacher-bg: rgba(255, 179, 0, 0.15);
+  --color-role-teacher: #ffb300;
+  --color-role-admin-bg: rgba(229, 57, 53, 0.15);
+  --color-role-admin: #e53935;
+  --color-role-staff-bg: rgba(122, 134, 154, 0.15);
+  --color-role-staff: #7a869a;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-bg-card: #1e1e1e;
+  --color-bg-card-alt: #2c2c2c;
+  --color-primary: #7b3fff;
+  --color-primary-hover: #6929ff;
+  --color-accent: #1faaff;
+  --color-accent2: #4fd18b;
+  --color-danger: #ff6b6b;
+  --color-warning: #ffe066;
+  --color-success: #4caf50;
+  --color-text: #eaf1fb;
+  --color-text-secondary: #7a7e8a;
+  --color-text-inverse: #fff;
+  --color-muted: #7a7e8a;
+  --color-btn-text: #fff;
+  --color-btn-gradient: linear-gradient(90deg, #1faaff 0%, #7b3fff 100%);
+  --color-btn-gradient-hover: linear-gradient(90deg, #4fd18b 0%, #7b3fff 100%);
+  --color-disabled: #4a4a4a;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-surface: #1e1e1e;
+  --color-input-background: #2a2a2a;
+  --color-error: #ff6b6b;
+  --color-error-light: rgba(255, 107, 107, 0.15);
+  --gradient-background: linear-gradient(
+    135deg,
+    #121212 0%,
+    #1e1e1e 50%,
+    #2c2c2c 100%
+  );
+  --color-demerit-gradient: linear-gradient(90deg, #ff8fa3 0%, #b47bff 100%);
+  --color-demerit-gradient-hover: linear-gradient(
+    90deg,
+    #ff6b6b 0%,
+    #b47bff 100%
+  );
+  --color-demerit: #ff8fa3;
+
+  /* Role Badge Colors */
+  --color-role-student-bg: rgba(31, 170, 255, 0.2);
+  --color-role-student: #1faaff;
+  --color-role-guardian-bg: rgba(123, 63, 255, 0.2);
+  --color-role-guardian: #7b3fff;
+  --color-role-teacher-bg: rgba(79, 209, 139, 0.2);
+  --color-role-teacher: #4fd18b;
+  --color-role-admin-bg: rgba(255, 107, 107, 0.2);
+  --color-role-admin: #ff6b6b;
+  --color-role-staff-bg: rgba(255, 224, 102, 0.2);
+  --color-role-staff: #ffe066;
+}
+
+/* Global fixes for form elements */
+select {
+  background: var(--color-input-background, #ffffff) !important;
+  color: var(--color-text, #2c3e50) !important;
+  border: 2px solid var(--color-border, #e0e0e0) !important;
+}
+
+select option {
+  background: var(--color-input-background, #ffffff) !important;
+  color: var(--color-text, #2c3e50) !important;
+}
+
+/* Ensure dropdowns are visible */
+.form-group select,
+.category-dropdown select,
+[data-theme="dark"] select {
+  background: var(--color-input-background, #2a2a32) !important;
+  color: var(--color-text, #eaf1fb) !important;
+  border: 2px solid var(--color-border, rgba(255, 255, 255, 0.1)) !important;
+}
+
+[data-theme="dark"] select option {
+  background: var(--color-input-background, #2a2a32) !important;
+  color: var(--color-text, #eaf1fb) !important;
+}
+
+/* Light theme fallbacks */
+[data-theme="light"] select,
+body:not([data-theme]) select {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 2px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] select option,
+body:not([data-theme]) select option {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+}

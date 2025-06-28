@@ -1,0 +1,662 @@
+.devdash-container {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 2.5rem 2rem;
+  border-radius: 14px;
+  max-width: 1300px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 16px 0 rgba(30, 40, 80, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.devdash-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.devdash-section {
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt);
+}
+
+.devdash-section h2 {
+  color: var(--color-accent);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.devdash-unauthorized {
+  background: var(--color-bg-card);
+  color: var(--color-danger);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 500px;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt);
+}
+
+.devdash-section:not(:last-child) {
+  border-bottom: 1px solid var(--color-bg-card-alt);
+}
+
+.devdash-container button,
+.devdash-section button {
+  background: var(--color-btn-gradient);
+  color: var(--color-btn-text, #fff);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.devdash-container button:hover,
+.devdash-section button:hover {
+  background: var(--color-btn-gradient-hover);
+}
+
+.devdash-stats-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.devdash-signups-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  justify-content: flex-start;
+}
+
+.devdash-recent-date {
+  color: var(--color-muted);
+}
+
+.devdash-feedback-date {
+  color: var(--color-muted);
+}
+
+.devdash-armageddon-btn {
+  background: linear-gradient(90deg, #d7263d 0%, #a30000 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt, #2222);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.devdash-armageddon-btn:hover,
+.devdash-armageddon-btn:focus {
+  background: linear-gradient(90deg, #ff0000 0%, #a30000 100%);
+  box-shadow: 0 4px 16px 0 #d7263d, 0 2px 8px 0 var(--color-bg-card-alt, #2222);
+}
+
+.devdash-stats-cards-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.devdash-stats-card {
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt);
+  flex: 1;
+  min-width: 180px;
+}
+
+.devdash-stats-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.devdash-stats-label {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.devdash-signups-section {
+  margin-top: 2rem;
+}
+
+.devdash-signups-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.devdash-signups-list li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: 6px;
+  background: var(--color-bg-card);
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt);
+}
+
+.devdash-signup-name {
+  font-weight: 500;
+  color: var(--color-text);
+  justify-self: start;
+}
+
+.devdash-signup-date {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-align: right;
+  justify-self: end;
+}
+
+/* Role Badges */
+.role-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: 1;
+  justify-self: center;
+}
+
+.role-student {
+  background: var(--color-role-student-bg);
+  color: var(--color-role-student);
+}
+
+.role-guardian {
+  background: var(--color-role-guardian-bg);
+  color: var(--color-role-guardian);
+}
+
+.role-teacher {
+  background: var(--color-role-teacher-bg);
+  color: var(--color-role-teacher);
+}
+
+.role-admin {
+  background: var(--color-role-admin-bg);
+  color: var(--color-role-admin);
+}
+
+.role-staff {
+  background: var(--color-role-staff-bg);
+  color: var(--color-role-staff);
+}
+
+.role-principal {
+  background: var(--color-role-admin-bg);
+  color: var(--color-role-admin);
+}
+
+.role-parent {
+  background: var(--color-role-guardian-bg);
+  color: var(--color-role-guardian);
+}
+
+.role-developer {
+  background: var(--color-role-admin-bg);
+  color: var(--color-role-admin);
+}
+
+/* Error Dashboard Styles */
+.devdash-error-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.devdash-error-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.devdash-error-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  min-width: 80px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.devdash-error-stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.devdash-error-stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.devdash-error-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--color-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.devdash-error-table thead {
+  background: var(--color-primary);
+  color: white;
+}
+
+.devdash-error-table th,
+.devdash-error-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-bg-card-alt);
+  font-size: 0.875rem;
+}
+
+.devdash-error-table th {
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.devdash-error-row {
+  transition: background-color 0.2s ease;
+}
+
+.devdash-error-row:hover {
+  background: var(--color-bg-card);
+}
+
+.devdash-error-row.severity-critical {
+  border-left: 4px solid #dc3545;
+}
+
+.devdash-error-row.severity-high {
+  border-left: 4px solid #fd7e14;
+}
+
+.devdash-error-row.severity-medium {
+  border-left: 4px solid #ffc107;
+}
+
+.devdash-error-row.severity-low {
+  border-left: 4px solid #28a745;
+}
+
+.devdash-error-time {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+.devdash-error-title {
+  max-width: 200px;
+}
+
+.devdash-error-title > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.25rem;
+}
+
+.devdash-error-message {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  font-family: monospace;
+  background: var(--color-bg-card);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+}
+
+.devdash-error-type,
+.devdash-error-severity,
+.devdash-error-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.devdash-error-type.type-automatic {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.devdash-error-type.type-manual {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.devdash-error-severity.severity-critical {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.devdash-error-severity.severity-high {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.devdash-error-severity.severity-medium {
+  background: #fffde7;
+  color: #f9a825;
+}
+
+.devdash-error-severity.severity-low {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.devdash-error-status.status-open {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.devdash-error-status.status-in-progress {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.devdash-error-status.status-resolved {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.devdash-error-status.status-rejected {
+  background: #f5f5f5;
+  color: #757575;
+}
+
+.devdash-error-role {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.devdash-error-url {
+  max-width: 120px;
+}
+
+.devdash-error-url > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.devdash-error-actions {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.devdash-error-action-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.375rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.devdash-error-action-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.devdash-error-resolve-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.375rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  margin-left: 0.5rem;
+}
+
+.devdash-error-resolve-btn:hover {
+  background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .devdash-container {
+    max-width: 95%;
+    padding: 2rem 1.5rem;
+  }
+
+  .devdash-stats-cards-row {
+    gap: 1.5rem;
+  }
+
+  .devdash-stats-card {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 900px) {
+  .devdash-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem auto;
+  }
+
+  .devdash-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .devdash-section {
+    padding: 1.2rem;
+  }
+
+  .devdash-stats-cards-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .devdash-stats-card {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .devdash-signups-list li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .role-badge {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .devdash-container {
+    padding: 1rem 0.75rem;
+    margin: 0.5rem auto;
+  }
+
+  .devdash-container h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .devdash-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .devdash-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .devdash-stats-value {
+    font-size: 1.5rem;
+  }
+
+  .devdash-stats-label {
+    font-size: 0.8rem;
+  }
+
+  .devdash-unauthorized {
+    padding: 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .devdash-armageddon-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .devdash-container {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .devdash-container h1 {
+    font-size: 1.4rem;
+  }
+
+  .devdash-section {
+    padding: 0.75rem;
+  }
+
+  .devdash-stats-value {
+    font-size: 1.3rem;
+  }
+
+  .devdash-signups-list li {
+    padding: 0.5rem;
+  }
+
+  .devdash-signup-name {
+    font-size: 0.9rem;
+  }
+
+  .devdash-signup-date {
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive Error Table */
+@media (max-width: 768px) {
+  .devdash-error-stats {
+    gap: 0.5rem;
+  }
+
+  .devdash-error-stat {
+    padding: 0.5rem 0.75rem;
+    min-width: 70px;
+  }
+
+  .devdash-error-stat-value {
+    font-size: 1.25rem;
+  }
+
+  .devdash-error-table th,
+  .devdash-error-table td {
+    padding: 0.5rem 0.375rem;
+    font-size: 0.8rem;
+  }
+
+  .devdash-error-time {
+    min-width: 120px;
+    font-size: 0.75rem;
+  }
+
+  .devdash-error-title {
+    max-width: 150px;
+  }
+
+  .devdash-error-url {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .devdash-error-table-container {
+    margin: 0 -0.75rem;
+  }
+
+  .devdash-error-stats {
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .devdash-error-stat {
+    flex: 1;
+    min-width: 60px;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .devdash-error-stat-value {
+    font-size: 1.1rem;
+  }
+
+  .devdash-error-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .devdash-error-table th,
+  .devdash-error-table td {
+    padding: 0.375rem 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .devdash-error-time {
+    min-width: 100px;
+    font-size: 0.7rem;
+  }
+
+  .devdash-error-title {
+    max-width: 120px;
+  }
+
+  .devdash-error-message {
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,151 @@
+--- Next Sprint (Features to be scheduled) ---
+
+**PRIORITY: Core Academic Management System**
+- **Subject & Homeroom Assignment System:**
+  - **Teacher Subject Registration:** When teachers register/login, they must select subjects they can teach from the available subjects list
+  - **Teacher Assignment Logic:** Once approved, system assigns students to teachers based on:
+    - Subject match
+    - Class size limits (e.g., max 30 students per subject-teacher combo)
+    - Grade level compatibility
+  - **Subject Management Interface:**
+    - Admin can enable/disable subjects school-wide
+    - View subject popularity and teacher capacity
+    - Reassign students between teachers if needed
+  - **Pending Subject Selections:** Dashboard section for:
+    - Students who haven't selected subjects yet
+    - Guardians with pending subject approvals
+    - Teachers who haven't specified their teaching subjects
+  - **Academic Year Management:**
+    - Subject selections happen at start of academic year
+    - Mid-year subject changes require admin approval
+    - Historical subject data preserved for reporting
+
+- **Implementation Priority:**
+  1. Add subject selection to teacher registration/profile
+  2. Build subject-teacher assignment algorithm
+  3. ✅ Admin interface for homeroom assignments (COMPLETED - AdminHomeroomManagement.tsx)
+  4. Notification system for pending selections/approvals
+  5. ✅ Academic reporting and analytics (COMPLETED - AdminAcademicReporting.tsx)
+
+- Teachers can open or close an extracurricular activity, blocking new sign ups
+- Teacher Profile card needs to be in a hamburger menu
+- Parents need to acknowledge marks assigned to student for a subject
+- When parents delete a notification, it removes the acknowledged tag
+- Notification Management Improvements
+    - Add a “Mark all as read” or “Delete all” option for parents
+    - Allow teachers to resend or edit notifications if needed
+- Parent Experience
+    - Add notification badges/counters for unread notifications
+    - Allow parents to filter or search their notifications
+    - Give notifications section a max height and vertical scroll
+- Make latest marks in student profile have a max height and vertical scroll
+- Admin console for admin personnel that might need to do the actions below:
+    - Automated notifications (email or push) for announcements, attendance, deletion approvals/denials, etc.
+    - Scheduled tasks (e.g., daily/weekly summary emails, automatic data cleanup, scheduled reports)
+    - Auto-calculate attendance rates and flag students with low attendance
+    - Auto-assign students to classes based on grade/age
+    - Audit logs for sensitive actions (deletions, edits, etc.)
+    - Enforce business rules (e.g., prevent deletion of students with outstanding fees)
+    - Generate and email/download reports (PDF, CSV) on demand
+    - Auto-archive old notifications.
+    - Integration with external services (Google Classroom, Microsoft Teams, SMS gateways) [to be implemented later]
+    - Track user engagement and send reminders to inactive users
+    - Aggregate and visualize school performance data
+- **Schedule Management**
+    - Administrative personnel can create, edit, and manage timetables for teachers, students, and principals
+    - Manage class schedules and extracurricular activity timetables
+    - Subject availability for students is automated based on teacher qualifications and minimum student headcount
+    - Extracurricular activity availability is automated based on the season and the teacher offering the activity
+- **Automated Subscription Payments**
+    - Integrate with a South African payment gateway (e.g., PayFast or Peach Payments) for automated subscription billing
+    - Automatically activate or deactivate school profiles based on payment status
+    - Notify admins of payment failures, renewals, or cancellations
+    - Ensure POPIA and PCI DSS compliance for payment data handling
+    - Different subscription tiers
+    - Free trial
+    - Ability for dev to provide special offers based on analytics
+- **Parent & Child Profile Management**
+    - Allow parents to update their own personal information (e.g., contact details, address) at any time
+    - Allow parents to request updates to their child’s information (with admin approval for sensitive changes such as name or guardian relationships)
+    - Admins are notified of and can approve or deny sensitive information change requests to ensure data integrity and compliance
+- **Child Medical & Emergency Information Management**
+    - Allow parents to add and update their child’s medical information (e.g., allergies, medical conditions, emergency contacts)
+    - Administrative personnel can review and edit this information for accuracy and compliance
+    - Teachers have read-only access to relevant medical and emergency information for students in their care
+- **Snack Shop Management**
+    - Admin or designated personnel can manage snack shop items (add, edit, remove, set prices and stock)
+    - Parents can pre-load funds to their child’s snack shop account and view purchase history
+    - Students (and/or parents) can place snack orders online for collection or delivery
+    - Teachers/admins can view sales, inventory, and popular item reports
+    - Integrate with payment system for top-ups and purchases
+    - Show dietary/allergy warnings based on student profiles
+- **School Fees Management**
+    - Admin or designated personnel can set up, edit, and manage school fee structures (annual, termly, monthly, per student, per grade, etc.)
+    - Parents can view outstanding balances, payment history, and download invoices or statements
+    - Integrate with the payment system to allow parents to pay school fees online (once-off or recurring)
+    - Automated reminders for upcoming or overdue payments
+    - Admins can track payments, generate reports, and manage fee exemptions or discounts
+    - Optionally, restrict access to certain features or issue notifications if fees are overdue
+- **Gift Card / Voucher Management**
+    - Admin or designated personnel can create and manage digital gift cards or vouchers (set value, expiry, assign to student or parent)
+    - Parents can purchase and send gift cards to their child’s snack shop account or to other students
+    - Students can redeem gift cards for snack shop purchases or school fees (if allowed)
+    - Gift card balances are tracked and visible in the student’s account
+    - Integrate with payment system for purchasing gift cards
+    - Admins can view reports on gift card usage and outstanding balances
+- **Awards Management**
+    - Teachers and administrative personnel can create, assign, and manage awards for students (e.g., academic excellence, sports achievements, attendance, leadership)
+    - Awards can be linked to specific activities, subjects, or school events
+    - Parents and students can view earned awards on their dashboards
+    - Admins can generate reports on awards given, by category, student, or class
+    - Optionally, allow for digital certificates or printable award documents
+    - Notify parents and students when a new award is assigned
+
+- Change account deletion request approval so that only admin and staff (not homeroom teachers) can approve or deny deletion requests.
+    - Update backend logic and UI to reflect this change.
+    - Notify relevant admin/staff of new deletion requests.
+    - Remove homeroom teacher notification/approval for deletions.
+
+- Parent-initiated school transfer: Admin approval flow.
+    - Parents can request a school transfer for their child.
+    - Admins review, approve/deny, and notify all parties.
+
+Dev notes:
+** Permissions for firestore rules**
+Principal and admin can view admin dashboard.
+Administrative personnel can view basic admin dashboard with less features.
+Teachers can only view teacher dashboard
+Guardians can only view Guardian dashboard
+Students can only view Student Dashboard.
+
+** Academic Management Data Structure Considerations:**
+- **User Profile Extensions:**
+  - Teachers: `teachingSubjects: string[]`, `maxStudentsPerSubject: number`, `homeroomStudents: string[]`
+  - Students: `selectedSubjects: string[]`, `approvedSubjects: string[]`, `homeroomTeacher: string`, `currentTeachers: {[subject]: teacherUid}`
+  - Guardians: `pendingSubjectApprovals: {studentUid: {subjects: string[], requestDate: timestamp}}`
+
+- **New Collections:**
+  - `subjectSelections` - tracks all subject selection requests and approvals
+  - `teacherAssignments` - maps students to teachers for each subject
+  - `homeroomAssignments` - maps students to homeroom teachers
+  - `academicYears` - manages academic year cycles and subject selection periods
+
+- **Business Rules:**
+  - Maximum students per subject-teacher combination (configurable by admin)
+  - Minimum students required for a subject to run (configurable)
+  - Subject prerequisites (e.g., Advanced Math requires Basic Math)
+  - Grade-level subject restrictions
+  - Academic year cutoff dates for subject changes
+
+- **Notification Triggers:**
+  - Student selects subjects → Notify guardians for approval
+  - Guardian approves subjects → Notify admin for teacher assignment
+  - Teacher capacity reached → Notify admin for additional teacher assignment
+  - Academic year deadline approaching → Notify students/guardians with pending selections
+---
+
+---
+
+**Summary of changes:**  
+- Only core school, principal, admin, user, and feedback management features remain in the current sprint (Day 16–23).
+- All other features, including admin/staff approval for account deletions, have been clearly listed under "Next Sprint".

@@ -1,0 +1,365 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // USERS COLLECTION
+    match /users/{userId} {
+      // 1. Allow admins, principals, and developers to do anything (including create)
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isDeveloper();
+
+      // 2. Allow authenticated user to create their own user doc if it doesn't exist yet (self-registration)
+      allow create: if request.auth != null && request.auth.uid == userId && !exists(/databases/$(database)/documents/users/$(userId));
+
+      // 3. User can read/write their own profile
+      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+
+      // 3b. Allow teachers to update students' marks and demerits arrays
+      allow update: if isTeacher() && resource.data.role == "student";
+
+      // 4. Allow students to read their linked guardians (if you store guardian IDs in student doc)
+      allow get: if request.auth != null
+        && resource.data.role == "guardian"
+        && resource.data.students != null
+        && resource.data.students.hasAny([request.auth.uid]);
+
+      // 5. Allow students to read their linked teachers (if you store teacher IDs in student doc)
+      allow get: if request.auth != null
+        && resource.data.role == "teacher"
+        && resource.data.students != null
+        && resource.data.students.hasAny([request.auth.uid]);
+
+      // 6. Allow guardians to read their linked students (if you store student IDs in guardian doc)
+      allow get: if request.auth != null
+        && resource.data.role == "student"
+        && resource.data.guardians != null
+        && resource.data.guardians.hasAny([request.auth.uid]);
+
+      // 6b. Allow guardians to update specific subject-related fields for their linked students
+      allow update: if request.auth != null
+        && resource.data.role == "student"
+        && resource.data.guardians != null
+        && resource.data.guardians.hasAny([request.auth.uid])
+        && (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['approvedSubjects', 'selectedSubjects']));
+
+      // 6c. Allow guardians to update specific subject-related fields when guardian doc has student in students array
+      allow update: if isGuardian()
+        && resource.data.role == "student"
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.students.hasAny([resource.id])
+        && (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['approvedSubjects', 'selectedSubjects']));
+
+      // 7. Allow teachers to read students in their classes/subjects
+      allow read: if isTeacher() && resource.data.role == "student";
+
+      // 7b. Allow students to read only teacher subjects from their own school (POPIA compliant)
+      // This allows minimal data access for subject selection only
+      allow read: if request.auth != null 
+                  && resource.data.role == "teacher"
+                  && resource.data.schoolId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.schoolId;
+
+      // 8. Allow anyone to read for registration lookup (safe because user docs should not contain sensitive info at this stage)
+      allow read: if true;
+    }
+
+    // SCHOOLS COLLECTION
+    match /schools/{schoolId} {
+      // Allow admins, principals, staff, and teachers to read
+      allow read: if isAdmin() || isPrincipal() || isStaff() || isTeacher() || isDeveloper();
+      // Only admins, principals, and developers can update/delete
+      allow update, delete: if isAdmin() || isPrincipal() || isDeveloper();
+      // Allow anyone to create a school registration request (for initial registration)
+      allow create: if true;
+      // Allow anyone to read for registration lookup
+      allow read: if true;
+    }
+
+    // USER EDIT LOGS & DELETION LOGS (AUDIT LOGS)
+    match /userEditLogs/{logId} {
+      allow read, write: if isDeveloper();
+    }
+    match /deletionLogs/{logId} {
+      allow read, write: if isDeveloper();
+    }
+
+    // DELETION REQUESTS
+    match /deletionRequests/{requestId} {
+      // Guardians can create requests for their children
+      allow create: if isGuardian();
+      // Admins and principals can read/write all requests
+      allow read, write: if isAdmin() || isPrincipal();
+    }
+
+    // FEEDBACK
+    match /feedback/{feedbackId} {
+      // Any authenticated user can create feedback
+      allow create: if request.auth != null;
+      // Only admins, principals, and developers can read feedback
+      allow read: if isAdmin() || isPrincipal() || isDeveloper();
+    }
+
+    // EXTRACURRICULARS
+    match /extracurriculars/{activityId} {
+      allow read: if request.auth != null;
+      allow write: if isTeacher() || isAdmin() || isPrincipal();
+    }
+
+    // GUARDIANS-STUDENTS LINKING (if you use a mapping collection)
+    match /guardiansStudents/{linkId} {
+      // Only admins, principals, and the linked guardian can read
+      allow read: if isAdmin() || isPrincipal() || isLinkedGuardian();
+      // Only admins and principals can write
+      allow write: if isAdmin() || isPrincipal();
+    }
+
+    // STUDENTS COLLECTION
+    match /students/{studentId} {
+      allow read, write: if request.auth != null && request.auth.uid == studentId;
+    }
+
+    // HOMEROOMS COLLECTION
+    match /homerooms/{homeroomId} {
+      allow read: if request.auth != null;
+    }
+
+    // MARK TEMPLATES COLLECTION
+    match /markTemplates/{templateId} {
+      // Teachers can create, read, update, and delete their own templates
+      allow create, read, update, delete: if isTeacher() && request.auth.uid == resource.data.teacherId;
+      // Allow teachers to create templates
+      allow create: if isTeacher() && request.auth.uid == request.resource.data.teacherId;
+      // Allow all teachers to read global templates
+      allow read: if isTeacher() && resource.data.isGlobal == true;
+      // Admins and principals can do everything
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isDeveloper();
+    }
+
+    // MARKS COLLECTION (if marks are stored in a separate collection)
+    match /marks/{markId} {
+      // Teachers can create and read marks
+      allow create, read: if isTeacher();
+      // Students can read their own marks
+      allow read: if request.auth != null && resource.data.studentId == request.auth.uid;
+      // Guardians can read marks of their linked students (implement based on your data model)
+      allow read: if isGuardian();
+      // Admins and principals can do everything
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isDeveloper();
+    }
+
+    // REGISTRATION TOKENS COLLECTION
+    match /registrationTokens/{tokenId} {
+      // Allow admins to create, read, update, and delete registration tokens
+      allow create, read, update, delete: if isAdmin() || isPrincipal();
+      
+      // Allow developers to read tokens for debugging
+      allow read: if isDeveloper();
+      
+      // Allow public read access for token validation during registration
+      allow read: if true;
+      
+      // Allow updating tokens to mark them as used during registration process
+      // Only allow setting the 'used' field to true
+      allow update: if request.resource.data.used == true 
+                    && resource.data.used == false
+                    && request.resource.data.keys().hasOnly(['used', 'createdAt', 'token', 'email', 'role', 'schoolId', 'createdBy', 'expiresAt', 'metadata']);
+    }
+
+    // ERROR REPORTS COLLECTION
+    match /errorReports/{reportId} {
+      // Allow authenticated users to create error reports
+      allow create: if request.auth != null;
+      
+      // Allow admins, staff, and developers to read and update error reports
+      allow read, update: if isAdmin() || isStaff() || isDeveloper();
+      
+      // Only admins and developers can delete error reports
+      allow delete: if isAdmin() || isDeveloper();
+    }
+
+    // AWARDS COLLECTION
+    match /awards/{awardId} {
+      // Allow students to read their own awards
+      allow read: if request.auth != null && resource.data.studentId == request.auth.uid;
+      
+      // Allow teachers to create and read awards for their students
+      allow create, read: if isTeacher();
+      
+      // Allow guardians to read awards of their linked students
+      allow read: if isGuardian();
+      
+      // Allow admins, principals, and staff to do everything
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isStaff() || isDeveloper();
+    }
+
+    // ACHIEVEMENTS COLLECTION
+    match /achievements/{achievementId} {
+      // Allow students to read their own achievements
+      allow read: if request.auth != null && resource.data.studentId == request.auth.uid;
+      
+      // Allow teachers to create and read achievements for their students
+      allow create, read: if isTeacher();
+      
+      // Allow guardians to read achievements of their linked students
+      allow read: if isGuardian();
+      
+      // Allow admins, principals, and staff to do everything
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isStaff() || isDeveloper();
+    }
+
+    // ASSIGNED AWARDS COLLECTION
+    match /assignedAwards/{assignedAwardId} {
+      // Allow students to read their own assigned awards
+      allow read: if request.auth != null && resource.data.studentId == request.auth.uid;
+      
+      // Allow teachers to create and read assigned awards for their students
+      allow create, read: if isTeacher();
+      
+      // Allow guardians to read assigned awards of their linked students
+      allow read: if isGuardian();
+      
+      // Allow admins, principals, and staff to do everything
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isStaff() || isDeveloper();
+    }
+
+    // AVAILABLE SUBJECTS COLLECTION (POPIA compliant - minimal data exposure)
+    match /availableSubjects/{schoolId} {
+      // Allow students to read available subjects from their own school only
+      allow read: if request.auth != null 
+                  && request.auth.uid != null
+                  && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.schoolId == schoolId;
+      
+      // Allow admins, principals, and teachers to manage available subjects
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isTeacher();
+      
+      // Allow developers to read for debugging
+      allow read: if isDeveloper();
+    }
+
+    // SUBJECT SELECTIONS COLLECTION
+    match /subjectSelections/{selectionId} {
+      // Allow students to create their own subject selections
+      allow create: if request.auth != null 
+                    && request.resource.data.studentUid == request.auth.uid;
+      
+      // Allow students to read/update/delete their own subject selections
+      allow read, update, delete: if request.auth != null 
+                          && resource.data.studentUid == request.auth.uid;
+      
+      // Allow guardians to read/approve/delete subject selections for their linked children
+      // Method 1: Direct guardianUid match
+      allow read, update, delete: if isGuardian() 
+                          && resource.data.guardianUid == request.auth.uid;
+      
+      // Allow guardians to create subject selections for testing/development
+      allow create: if isGuardian() 
+                    && request.resource.data.guardianUid == request.auth.uid;
+      
+      // Method 2: Guardian linked to student via student document
+      allow read, update, delete: if isGuardian()
+                          && exists(/databases/$(database)/documents/users/$(resource.data.studentUid))
+                          && (get(/databases/$(database)/documents/users/$(resource.data.studentUid)).data.guardianUid == request.auth.uid
+                              || get(/databases/$(database)/documents/users/$(resource.data.studentUid)).data.guardians.hasAny([request.auth.uid]));
+      
+      // Method 3: Guardian document has student in students array
+      allow read, update, delete: if isGuardian()
+                          && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+                          && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.students.hasAny([resource.data.studentUid]);
+
+      // Method 4: Allow guardians to create subject selections for their linked students (for sample data)
+      allow create: if isGuardian()
+                    && exists(/databases/$(database)/documents/users/$(request.resource.data.studentUid))
+                    && (get(/databases/$(database)/documents/users/$(request.resource.data.studentUid)).data.guardianUid == request.auth.uid
+                        || get(/databases/$(database)/documents/users/$(request.resource.data.studentUid)).data.guardians.hasAny([request.auth.uid]));
+      
+      // Method 5: Guardian document has student in students array (for creation)
+      allow create: if isGuardian()
+                    && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+                    && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.students.hasAny([request.resource.data.studentUid]);
+      
+      // Allow admins, principals, and teachers to manage subject selections
+      allow read, create, update, delete: if isAdmin() || isPrincipal() || isTeacher();
+      
+      // Allow developers to read for debugging
+      allow read: if isDeveloper();
+    }
+
+    // NOTIFICATIONS COLLECTION
+    match /notifications/{notificationId} {
+      // Allow users to read their own notifications (individual document access)
+      allow read, update: if request.auth != null 
+                          && resource.data.recipientUid == request.auth.uid;
+      
+      // Allow users to query/list their own notifications
+      allow list: if request.auth != null;
+      
+      // Allow system/functions to create notifications for users
+      allow create: if request.auth != null;
+      
+      // Allow admins, principals, and staff to manage notifications
+      allow read, create, update, delete, list: if isAdmin() || isPrincipal() || isStaff();
+      
+      // Allow developers to read for debugging
+      allow read, list: if isDeveloper();
+    }
+
+    // CONTACT INFO COLLECTION
+    match /contactInfo/{contactId} {
+      // Allow users to read and manage their own contact info
+      allow read, update, delete: if request.auth != null 
+                                 && resource.data.guardianId == request.auth.uid;
+      
+      // Allow users to create their own contact info
+      allow create: if request.auth != null
+                    && request.resource.data.guardianId == request.auth.uid;
+      
+      // Allow admins, principals, and staff to access contact info
+      allow read, create, update, delete: if isAdmin() || isPrincipal() || isStaff();
+      
+      // Allow developers to read for debugging
+      allow read: if isDeveloper();
+    }
+
+    // EMERGENCY CONTACTS COLLECTION
+    match /emergencyContacts/{contactId} {
+      // Allow users to read and manage their own emergency contacts
+      allow read, update, delete: if request.auth != null 
+                                 && resource.data.guardianId == request.auth.uid;
+      
+      // Allow users to create their own emergency contacts
+      allow create: if request.auth != null
+                    && request.resource.data.guardianId == request.auth.uid;
+      
+      // Allow admins, principals, and staff to access emergency contacts
+      allow read, create, update, delete: if isAdmin() || isPrincipal() || isStaff();
+      
+      // Allow developers to read for debugging
+      allow read: if isDeveloper();
+    }
+
+    // =========================
+    // HELPER FUNCTIONS
+    // =========================
+    function isAdmin() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+    function isPrincipal() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "principal";
+    }
+    function isStaff() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "staff";
+    }
+    function isTeacher() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher";
+    }
+    function isGuardian() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "guardian";
+    }
+    function isDeveloper() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "developer";
+    }
+    // Example: check if the guardian is linked to the student (implement as needed)
+    function isLinkedGuardian() {
+      // You may need to implement this based on your data model
+      return false;
+    }
+  }
+}

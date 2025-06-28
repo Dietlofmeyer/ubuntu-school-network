@@ -1,0 +1,129 @@
+.auditlogs-container {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 24px 0 var(--color-bg-card-alt);
+}
+
+.auditlogs-back-btn {
+  background: var(--color-btn-gradient, var(--color-primary));
+  color: var(--color-btn-text, #fff);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt, #2222);
+  outline: none;
+  display: inline-block;
+}
+.auditlogs-back-btn:hover,
+.auditlogs-back-btn:focus {
+  background: var(
+    --color-btn-gradient-hover,
+    var(--color-primary-dark, #5a1bb7)
+  );
+  color: var(--color-btn-text, #fff);
+  box-shadow: 0 4px 16px 0 var(--color-primary),
+    0 2px 8px 0 var(--color-bg-card-alt, #2222);
+}
+
+.auditlogs-popianotice {
+  background: var(--color-bg-card-alt, #222);
+  color: var(--color-warning, #ffe066);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.98rem;
+}
+
+.auditlogs-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.auditlogs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  background: var(--color-bg-card);
+}
+
+.auditlogs-table th,
+.auditlogs-table td {
+  border: 1px solid var(--color-bg-card-alt);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.auditlogs-table th {
+  background: var(--color-bg-card-alt);
+  color: var(--color-primary);
+}
+
+.auditlogs-table tr:nth-child(even) {
+  background: var(--color-bg);
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .auditlogs-container {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .auditlogs-container {
+    padding: 1.2rem;
+    margin: 1rem auto;
+  }
+
+  .auditlogs-back-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .auditlogs-popianotice {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .auditlogs-container {
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+
+  .auditlogs-back-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .auditlogs-popianotice {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .auditlogs-table-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auditlogs-container {
+    padding: 0.8rem;
+  }
+
+  .auditlogs-back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

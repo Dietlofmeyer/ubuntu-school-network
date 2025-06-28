@@ -1,0 +1,126 @@
+Start: Wednesday, June 19, 2025
+Finish: Friday, July 12, 2025
+Progress: 32/32 tasks completed (100%)
+Schedule progress: blue
+// Progress color key: blue = ahead of schedule, green = on schedule, amber = slightly behind, red = far behind
+
+Finished 16 days ahead of schedule.
+
+// Completed steps:
+1. Split code into reusable components. [2025-06-17]
+2. Restructure the file/folder structure for better organization. [2025-06-17]
+3. Add a feature for teachers to manage extracurricular activities, save extracurricular so students can sign up for them. [2025-06-17]
+4. Add a feature for students to sign up for extracurricular activities, they can only sign up for activities that are available based on teachers. [2025-06-17]
+5. Audit and Plan Responsive Design [2025-06-17]
+6. Make App Shell Responsive [2025-06-17]
+7. Make Navigation Responsive [2025-06-17]
+8. Make Teacher and Student Dashboards Responsive [2025-06-18]
+9. Make Dashboard Widgets/Stats Responsive [2025-06-18]
+10. Make Modals Responsive [2025-06-18]
+11. Test All Screens [2025-06-19]
+12. Polish and Fix Edge Cases [2025-06-19]
+13. Review and Document [2025-06-19]
+14. Plan and scaffold custom modal system. [2025-06-19]
+15. Implement modal open/close logic. [2025-06-19]
+16. Style modal for desktop and mobile. [2025-06-19]
+17. Integrate modal as settings popup. [2025-06-19]
+18. Install and configure i18n. [2025-06-20]
+19. Extract main UI text for localization. [2025-06-20]
+20. Extract and localize remaining UI text. [2025-06-20]
+21. Parent registration and linking. [Completed 2025-06-20]
+    - Registration page, UI for linking with children, store relationships.
+22. Parent dashboard and notifications. [Completed 2025-06-20]
+    - Dashboard page, display children/progress, notification system.
+23. Demerit acknowledgment flow. [Completed 2025-06-21]
+    - Notify parents, UI for acknowledgment, track status, show to teachers/admins.
+24. Add "Request Data Deletion" button to parent dashboard/settings modal. [Completed 2025-06-22]
+    - Only parents can request data deletion for their children (especially if under 18).
+    - Show confirmation dialog before submitting.
+    - Show status/feedback after request.
+25. Implement backend for data deletion requests. [Completed 2025-06-22]
+    - Design endpoint, store requests, notify homeroom teacher, return status.
+
+--- Next Up (Current Sprint: Day 16–23, 3h Sun-Thu, 5h Fri/Sat) ---
+
+**Feature: School System & Admin Management**
+
+**Day 16 (Thursday, 3h)**
+26. School registration and principal profile creation. [Completed 2025-06-22]
+    - School and principal are created together in a single process. [Completed 2025-06-22]
+    - Principal details (name, email, password, contact info) are required at registration. [Completed 2025-06-22]
+    - Principal profile is directly tied to the school account and acts as the main administrator. [Completed 2025-06-22]
+    - Scaffold a minimal admin dashboard, accessible to the principal. [Completed 2025-06-22]
+    - Make the registration process include Progressive Form Steps. [Completed 2025-06-22]
+    - **Dynamic registration features to include:**[Completed 2025-06-22]
+        1. Progressive Form Steps (multi-step wizard for registration).
+        2. Conditional Fields (show/hide fields based on previous answers).
+        6. Summary/Review Step (show all entered info before submission).
+        7. Responsive UI (form adapts to mobile and desktop screens).
+
+**Day 17 (Friday, 5h)**
+27. Admin dashboard: Manage administrative personnel. [Completed 2025-06-23]
+    - Principal can add/manage administrative personnel from the admin dashboard. [Completed 2025-06-23]
+    - Basic user listing and add/remove functionality for admin staff. [Completed 2025-06-23]
+
+**Day 18 (Saturday, 5h)** [Completed 2025-06-25]
+28. Admin dashboard: User management.
+    - View and manage all users (students, guardians, teachers, admins). [Completed 2025-06-23]
+    - Edit users. [Not yet implemented]
+    - Secure linking and permissions for guardians and students. [Not yet implemented]
+    - **POPIA-compliant user deletion:** [Completed 2025-06-23]
+        - When an admin deletes a user, remove both their Firestore profile and their Firebase Auth account. [Completed 2025-06-23]
+        - Backend (Cloud Function) handles secure deletion from both Firestore and Auth. [Completed 2025-06-23]
+        - UI in admin dashboard triggers this deletion. [Completed 2025-06-23]
+        - All deletions are logged for compliance/audit purposes. [Completed 2025-06-23]
+
+---
+
+**Action Items for Day 18/19:** [Completed 2025-06-25]
+- [[Completed 2025-06-25] ] Implement user editing in the admin dashboard.
+    - Add an "Edit" button next to each user in the admin dashboard.
+    - Clicking "Edit" opens a modal or page with a form pre-filled with the user's details.
+    - Allow admin to update fields like name, email, phone, and role.
+    - Save changes to Firestore and update the UI after editing.
+
+- [ [Completed 2025-06-25]] Build secure linking process: Admins add guardians, then add and link students under guardian profiles.
+    - In the admin dashboard, list all guardians with a "Manage" button next to each.
+    - Clicking "Manage" opens a modal or page showing:
+        - Guardian details.
+        - A list of students currently linked to this guardian.
+        - An "Add Student" button.
+    - "Add Student" opens a form to create a new student profile, automatically linking the student to the selected guardian.
+    - Allow admins to unlink or remove students from the guardian in this interface.
+    - All linking/unlinking actions should update Firestore and the UI immediately.
+
+**Implementation Notes:**
+- Keep the UI consistent with how other roles are added/managed.
+- Ensure only admins/staff can access these management features.
+- Linking should be one-way: students are always managed under a guardian, not the other way around.
+- Make sure to validate input and handle errors gracefully.
+
+---
+
+**Design Note:**  
+For school control and data integrity, guardians should be **added first by admins** (or principal/authorized staff), and then students are **added and linked under the guardian profile**.  
+- This keeps student records centralized under their guardians, making it easier to manage family relationships and communications.
+- Only legitimate students are registered, and duplicate or unauthorized student records are prevented.
+- Admins remain in control of the student roster and maintain compliance with school policies.
+
+---
+
+**Feature: Developer Dashboard** [Completed 2025-06-25]
+
+**Day 21 (Tuesday, 3h)**
+31. Create and expand developer dashboard.
+    - Scaffold a basic developer dashboard (separate from the admin dashboard) for technical analytics and developer tools.
+    - Add user stats, analytics, feedback review, deletion requests management, controls for managing users and reviewing feedback, and audit logs.
+
+**Day 22 (Thursday, 3h)** [Completed 2025-06-26]
+32. Firebase Security Rules Review & Implementation.
+    - Review all Firestore and Storage rules for least-privilege access.
+    - Write, test, and deploy security rules for all collections and user roles.
+    - Test all user flows (admin, teacher, guardian, student) for correct access and restrictions.
+    - Document rules and any known limitations or exceptions.
+    - Backup current rules before making changes.
+
+---

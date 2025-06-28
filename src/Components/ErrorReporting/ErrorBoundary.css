@@ -1,0 +1,225 @@
+/* Error Boundary Styles */
+.error-boundary-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--background-color, #f8f9fa);
+}
+
+.error-boundary-content {
+  max-width: 600px;
+  background: var(--card-background, #ffffff);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.error-boundary-content h1 {
+  color: var(--text-primary, #333);
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+}
+
+.error-boundary-content p {
+  color: var(--text-secondary, #666);
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.error-details {
+  text-align: left;
+  margin: 24px 0;
+  border: 1px solid var(--border-color, #e1e5e9);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.error-details summary {
+  padding: 12px 16px;
+  background: var(--secondary-background, #f8f9fa);
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-primary, #333);
+  border-bottom: 1px solid var(--border-color, #e1e5e9);
+}
+
+.error-details summary:hover {
+  background: var(--hover-background, #e9ecef);
+}
+
+.error-stack {
+  padding: 16px;
+}
+
+.error-stack h3 {
+  margin: 16px 0 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-primary, #333);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.error-stack h3:first-child {
+  margin-top: 0;
+}
+
+.error-stack pre {
+  background: var(--code-background, #f8f9fa);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--danger-color, #dc3545);
+  border: 1px solid var(--border-color, #e1e5e9);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.error-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.reload-button,
+.report-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.reload-button {
+  background: var(--accent-color, #007bff);
+  color: white;
+}
+
+.reload-button:hover {
+  background: var(--accent-hover, #0056b3);
+  transform: translateY(-1px);
+}
+
+.report-button {
+  background: var(--secondary-background, #f8f9fa);
+  color: var(--text-primary, #333);
+  border: 1px solid var(--border-color, #e1e5e9);
+}
+
+.report-button:hover {
+  background: var(--hover-background, #e9ecef);
+  transform: translateY(-1px);
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .error-boundary-container {
+    background: var(--background-color-dark, #1a202c);
+  }
+
+  .error-boundary-content {
+    background: var(--card-background-dark, #2d3748);
+  }
+
+  .error-boundary-content h1 {
+    color: var(--text-primary-dark, #e2e8f0);
+  }
+
+  .error-boundary-content p {
+    color: var(--text-secondary-dark, #a0aec0);
+  }
+
+  .error-details summary {
+    background: var(--secondary-background-dark, #4a5568);
+    color: var(--text-primary-dark, #e2e8f0);
+    border-bottom-color: var(--border-color-dark, #718096);
+  }
+
+  .error-details summary:hover {
+    background: var(--hover-background-dark, #2d3748);
+  }
+
+  .error-stack h3 {
+    color: var(--text-primary-dark, #e2e8f0);
+  }
+
+  .error-stack pre {
+    background: var(--code-background-dark, #4a5568);
+    color: var(--danger-color-dark, #fc8181);
+    border-color: var(--border-color-dark, #718096);
+  }
+
+  .report-button {
+    background: var(--secondary-background-dark, #4a5568);
+    color: var(--text-primary-dark, #e2e8f0);
+    border-color: var(--border-color-dark, #718096);
+  }
+
+  .report-button:hover {
+    background: var(--hover-background-dark, #2d3748);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .error-boundary-content {
+    padding: 24px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .reload-button,
+  .report-button {
+    width: 100%;
+  }
+
+  .error-icon {
+    font-size: 3rem;
+  }
+
+  .error-boundary-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .error-stack pre {
+    font-size: 11px;
+    max-height: 150px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reload-button:hover,
+  .report-button:hover {
+    transform: none;
+  }
+}
+
+.reload-button:focus,
+.report-button:focus {
+  outline: 2px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+}
+
+.error-details[open] summary {
+  border-bottom: 1px solid var(--border-color, #e1e5e9);
+}

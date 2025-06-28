@@ -1,0 +1,218 @@
+#root {
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* Modern App Landing Page using theme.css variables */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.main-content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.home-content {
+  background: var(--color-bg-card);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+}
+
+.home-content h1 {
+  color: var(--color-text);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.home-content p {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.home-btn-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: var(--color-btn-gradient);
+  color: var(--color-btn-text);
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  min-width: 140px;
+  margin-bottom: 0;
+}
+
+.nav-btn:hover {
+  background: var(--color-btn-gradient-hover);
+}
+
+.nav-btn:active {
+  background: var(--color-primary);
+}
+
+/* Secondary button for school registration */
+.nav-btn.secondary {
+  background: var(--color-bg-card-alt);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+}
+
+.nav-btn.secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-btn-text);
+}
+
+.nav-btn.secondary:active {
+  background: var(--color-primary-hover);
+}
+
+/* Settings button styling - consistent with login page */
+.settings-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: var(--color-bg-card);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  padding: 0.75rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-button:hover {
+  background: var(--color-bg-card-alt);
+  border-color: var(--color-primary);
+}
+
+.settings-icon {
+  font-size: 1.25rem;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .home-content {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .home-content {
+    padding: 2rem 1.5rem;
+    max-width: 95%;
+  }
+
+  .home-btn-row {
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .home-content {
+    padding: 1.5rem 1rem;
+    max-width: 98%;
+  }
+
+  .home-btn-row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 1.1rem;
+    padding: 0.9rem 0;
+    margin-bottom: 0;
+    border-radius: 12px;
+  }
+
+  .settings-button {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.8rem 0.3rem;
+  }
+
+  .home-content {
+    padding: 1.2rem 0.8rem;
+    max-width: 99%;
+  }
+
+  .nav-btn {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+
+  .settings-button {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem;
+  }
+
+  .settings-icon {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,57 @@
+export const SUBJECTS = [
+  "Mathematics",
+  "English",
+  "Afrikaans",
+  "Science",
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "History",
+  "Geography",
+  "Life Orientation",
+  "Physical Science",
+  "Accounting",
+  "Business Studies",
+  "Economics",
+  "Computer Science",
+  "Art",
+  "Music",
+  "Drama",
+  "Physical Education",
+  "Technology",
+  "Religious Studies",
+  "French",
+  "Spanish",
+];
+
+export const QUALIFICATIONS = ["B.Ed", "M.Ed", "M.Sc", "M.A", "PhD", "PGCE"];
+
+export const GRADES = Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`);
+
+export const subjectIcons: Record<string, string> = {
+  Mathematics: "➗",
+  Science: "🔬",
+  Biology: "🧬",
+  Chemistry: "⚗️",
+  Physics: "🧲",
+  English: "📖",
+  History: "🏺",
+  Geography: "🌍",
+  "Computer Science": "💻",
+  Economics: "💹",
+  "Business Studies": "💼",
+  Afrikaans: "🇿🇦",
+  French: "🇫🇷",
+  Spanish: "🇪🇸",
+  Art: "🎨",
+  Music: "🎵",
+  Drama: "🎭",
+  "Life Orientation": "🧠",
+  Technology: "🔧",
+  Accounting: "📊",
+  "Physical Education": "⚽",
+  "Physical Science": "🔬",
+  "Religious Studies": "📿",
+  // Fallback for unknown subjects
+  Default: "📘",
+};

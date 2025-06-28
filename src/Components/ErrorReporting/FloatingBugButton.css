@@ -1,0 +1,84 @@
+/* Floating Bug Report Button */
+.floating-bug-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-color, #007bff);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  font-size: 0;
+}
+
+.floating-bug-button:hover {
+  background: var(--accent-hover, #0056b3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.floating-bug-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-bug-button svg {
+  transition: transform 0.2s ease;
+}
+
+.floating-bug-button:hover svg {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-bug-button {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .floating-bug-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .floating-bug-button {
+    background: var(--accent-color, #0d6efd);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .floating-bug-button:hover {
+    background: var(--accent-hover, #0b5ed7);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Accessibility */
+.floating-bug-button:focus {
+  outline: 2px solid var(--focus-color, #fff);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-bug-button,
+  .floating-bug-button svg {
+    transition: none;
+  }
+
+  .floating-bug-button:hover {
+    transform: none;
+  }
+}

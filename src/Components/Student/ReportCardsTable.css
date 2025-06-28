@@ -1,0 +1,202 @@
+/* --- Report Cards Table --- */
+.sdash-report-table-dark {
+  background: var(--color-bg-card, #232946);
+  color: var(--color-text, #eaf1fb);
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.sdash-report-table-dark th,
+.sdash-report-table-dark td {
+  padding: 0.7rem 0.7rem;
+  text-align: left;
+  vertical-align: middle;
+  word-break: break-word;
+}
+.sdash-report-table-dark th {
+  background: var(--color-bg-card, #232946);
+  color: var(--color-primary, #b47bff);
+  font-weight: 800;
+  font-size: 1.07rem;
+  border-bottom: 2px solid var(--color-border, #31364a);
+  white-space: nowrap;
+}
+.sdash-report-table-dark td {
+  background: var(--color-bg-card, #232946);
+  color: var(--color-text, #eaf1fb);
+  border-bottom: 1px solid var(--color-border, #31364a);
+  font-size: 1.05rem;
+}
+.sdash-report-table-dark tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- View Button Cell (Desktop) --- */
+.sdash-report-table-dark .report-view-btn-cell {
+  min-width: 100px;
+  width: 1%;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* --- View Button Styling (Desktop) --- */
+.sdash-report-table-dark .report-view-btn-cell button,
+.report-view-btn {
+  min-width: 80px;
+  min-height: 36px;
+  padding: 0.5em 1.2em;
+  font-size: 1rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  background: var(
+    --color-btn-gradient,
+    linear-gradient(90deg, #4fd1ff 0%, #b47bff 100%)
+  );
+  color: var(--color-btn-text, #232946);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, color 0.15s, box-shadow 0.15s, transform 0.12s;
+  box-shadow: 0 2px 8px var(--color-shadow-btn, #b47bff22);
+  outline: none;
+}
+.sdash-report-table-dark .report-view-btn-cell button:hover,
+.report-view-btn:hover {
+  background: var(
+    --color-btn-gradient-hover,
+    linear-gradient(90deg, #4fd18b 0%, #b47bff 100%)
+  );
+  color: #fff;
+  box-shadow: 0 4px 18px var(--color-shadow-btn-hover, #b47bff44);
+  transform: translateY(-2px) scale(1.03);
+}
+.sdash-report-table-dark .report-view-btn-cell button:active,
+.report-view-btn:active {
+  background: var(--color-accent, #4fd1ff);
+  color: #fff;
+  transform: scale(0.98);
+}
+
+/* --- Responsive: Flex Card Layout on Mobile --- */
+@media (max-width: 700px) {
+  .sdash-report-table-dark,
+  .sdash-report-table-dark thead,
+  .sdash-report-table-dark tbody {
+    display: block;
+    width: 100%;
+  }
+  .sdash-report-table-dark thead {
+    display: none;
+  }
+  .sdash-report-table-dark tr {
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--color-bg-card, #232946);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px
+      var(--color-shadow-card-mobile, rgba(180, 123, 255, 0.06));
+    margin-bottom: 1.2rem;
+    padding: 0.7rem 0.7rem 0.5rem 0.7rem;
+  }
+  .sdash-report-table-dark td {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.3rem;
+    border: none;
+    text-align: left;
+    background: none;
+    font-size: 1rem;
+  }
+  .sdash-report-table-dark td:before {
+    content: attr(data-label) ": ";
+    min-width: 90px;
+    margin-right: 0.5em;
+    font-weight: 700;
+    color: var(--color-primary, #b47bff);
+    font-size: 1.05rem;
+    display: inline-block;
+  }
+  .sdash-report-table-dark .report-view-btn-cell {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    margin-top: 0.7rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .sdash-report-table-dark .report-view-btn-cell button {
+    width: 100%;
+    margin-top: 0.2rem;
+    font-size: 1.05rem;
+    padding: 0.5rem 0;
+    border-radius: 6px;
+  }
+}
+
+.report-cards-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.report-card-mobile {
+  background: var(--color-bg-card, #232946);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px
+    var(--color-shadow-card-mobile, rgba(180, 123, 255, 0.06));
+  padding: 1.1rem 1rem 1rem 1rem;
+  color: var(--color-text, #eaf1fb);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.report-label {
+  color: var(--color-primary, #b47bff);
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+.report-card-mobile-btn {
+  margin-top: 0.8rem;
+  width: 100%;
+  font-size: 1.08rem;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  background: var(
+    --color-btn-gradient,
+    linear-gradient(90deg, #4fd1ff 0%, #b47bff 100%)
+  );
+  color: var(--color-btn-text, #232946);
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 2px 8px var(--color-shadow-btn, #b47bff22);
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.12s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.report-card-mobile-btn:hover {
+  background: var(
+    --color-btn-gradient-hover,
+    linear-gradient(90deg, #4fd18b 0%, #b47bff 100%)
+  );
+  color: #fff;
+  box-shadow: 0 4px 18px var(--color-shadow-btn-hover, #b47bff44);
+  transform: translateY(-2px) scale(1.03);
+}
+.report-card-mobile-btn:active {
+  background: var(--color-accent, #4fd1ff);
+  color: #fff;
+  transform: scale(0.98);
+}

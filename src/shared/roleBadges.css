@@ -1,0 +1,53 @@
+/* Shared Role Badge Styles */
+/* This file contains consistent role badge styling that should be used across all dashboards */
+
+.role-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Student role badge */
+.role-student {
+  background: var(--color-role-student-bg);
+  color: var(--color-role-student);
+}
+
+/* Guardian/Parent role badge */
+.role-guardian,
+.role-parent {
+  background: var(--color-role-guardian-bg);
+  color: var(--color-role-guardian);
+}
+
+/* Teacher role badge */
+.role-teacher {
+  background: var(--color-role-teacher-bg);
+  color: var(--color-role-teacher);
+}
+
+/* Admin/Principal role badge */
+.role-admin,
+.role-principal {
+  background: var(--color-role-admin-bg);
+  color: var(--color-role-admin);
+}
+
+/* Staff role badge */
+.role-staff {
+  background: var(--color-role-staff-bg);
+  color: var(--color-role-staff);
+}
+
+/* Developer role badge */
+.role-developer {
+  background: var(--color-role-admin-bg);
+  color: var(--color-role-admin);
+}

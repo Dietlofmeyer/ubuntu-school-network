@@ -1,0 +1,151 @@
+.signups-analytics-container {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 24px 0 var(--color-bg-card-alt);
+}
+
+.signups-analytics-title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.signups-analytics-section {
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt);
+}
+
+.signups-analytics-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.signups-analytics-day {
+  background: var(--color-bg-card-alt);
+  color: var(--color-primary);
+  border-radius: 6px;
+  padding: 0.75rem 1.2rem;
+  font-size: 1.05rem;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 0 1px 4px 0 var(--color-bg-card-alt);
+}
+
+.signups-analytics-back-btn {
+  background: var(--color-btn-gradient, var(--color-primary));
+  color: var(--color-btn-text, #fff);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 var(--color-bg-card-alt, #2222);
+  outline: none;
+  display: inline-block;
+}
+.signups-analytics-back-btn:hover,
+.signups-analytics-back-btn:focus {
+  background: var(
+    --color-btn-gradient-hover,
+    var(--color-primary-dark, #5a1bb7)
+  );
+  color: var(--color-btn-text, #fff);
+  box-shadow: 0 4px 16px 0 var(--color-primary),
+    0 2px 8px 0 var(--color-bg-card-alt, #2222);
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .signups-analytics-container {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .signups-analytics-container {
+    padding: 1.2rem;
+    margin: 1rem auto;
+  }
+
+  .signups-analytics-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .signups-analytics-section {
+    padding: 1.2rem;
+  }
+
+  .signups-analytics-row {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .signups-analytics-day {
+    min-width: 120px;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .signups-analytics-back-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .signups-analytics-container {
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+
+  .signups-analytics-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .signups-analytics-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .signups-analytics-day {
+    width: 100%;
+    max-width: 300px;
+    min-width: auto;
+  }
+
+  .signups-analytics-back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .signups-analytics-container {
+    padding: 0.8rem;
+  }
+
+  .signups-analytics-title {
+    font-size: 1.4rem;
+  }
+
+  .signups-analytics-section {
+    padding: 1rem;
+  }
+}

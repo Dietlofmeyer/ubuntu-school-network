@@ -1,0 +1,261 @@
+{
+  "students": [
+    {
+      "id": "9092",
+      "name": "Dietlof",
+      "age": 22,
+      "class": "2B",
+      "points": 20,
+      "subjects": {
+        "math": true,
+        "english": true,
+        "science": true,
+        "history": true,
+        "geography": true,
+        "art": true,
+        "music": true,
+        "technology": true,
+        "economics": true,
+        "physicalEd": true
+      },
+      "tags": [],
+      "activities": [],
+      "address": "",
+      "enrollmentDate": "",
+      "parentName": "",
+      "parentContact": "",
+      "medicalInfo": "",
+      "behaviorLog": [
+        {
+          "date": "6/15/2025",
+          "reason": "Late to class",
+          "amount": 10
+        },
+        {
+          "date": "6/15/2025",
+          "reason": "Late to class",
+          "amount": 10
+        }
+      ],
+      "attendance": [
+        "6/15/2025"
+      ],
+      "notes": [
+        {
+          "text": "Horrible child",
+          "date": ""
+        },
+        {
+          "text": "Such a horrible child",
+          "date": ""
+        },
+        {
+          "text": "Test note",
+          "date": "6/15/2025 01:11 AM"
+        },
+        {
+          "text": "ddg",
+          "date": "6/15/2025 01:22 AM"
+        },
+        {
+          "text": "note",
+          "date": "6/15/2025 01:32 AM"
+        },
+        {
+          "text": "Another test note",
+          "date": "6/15/2025 01:14 PM"
+        }
+      ]
+    }
+  ],
+  "scores": [
+    {
+      "id": "score-dietlof",
+      "studentName": "Dietlof",
+      "math": [],
+      "english": [],
+      "science": [],
+      "history": [
+        45,
+        78
+      ],
+      "geography": [
+        82
+      ],
+      "art": [],
+      "music": [],
+      "technology": [],
+      "economics": [
+        69
+      ],
+      "physicalEd": []
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1",
+      "name": "Jane Doe",
+      "email": "jane.doe@school.edu",
+      "phone": "555-1234",
+      "subjects": [
+        "Math",
+        "Physics"
+      ],
+      "classes": [
+        "10A",
+        "11B"
+      ],
+      "tags": [
+        "Head of Department",
+        "Mentor"
+      ],
+      "experienceYears": 12,
+      "qualifications": [
+        "BSc Mathematics",
+        "PGCE",
+        "MEd"
+      ],
+      "notes": [
+        {
+          "text": "Excellent with students.",
+          "date": "2025-06-15"
+        }
+      ],
+      "awards": [
+        "Best Teacher 2024"
+      ],
+      "schedule": [
+        {
+          "day": "Monday",
+          "period": "1",
+          "class": "10A"
+        },
+        {
+          "day": "Tuesday",
+          "period": "2",
+          "class": "11B"
+        }
+      ],
+      "feedback": [
+        {
+          "from": "Parent",
+          "text": "Great communication!",
+          "date": "2025-05-10"
+        },
+        {
+          "from": "Peer",
+          "text": "Very supportive.",
+          "date": "2025-04-22"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "John Smith",
+      "email": "john.smith@school.edu",
+      "phone": "555-5678",
+      "subjects": [
+        "English",
+        "History"
+      ],
+      "classes": [
+        "9C",
+        "10B"
+      ],
+      "tags": [
+        "New Teacher"
+      ],
+      "experienceYears": 5,
+      "qualifications": [
+        "BA English",
+        "PGCE"
+      ],
+      "notes": [
+        {
+          "text": "Needs support with classroom management.",
+          "date": "2025-06-10"
+        }
+      ],
+      "awards": [
+        "Innovation Award"
+      ],
+      "schedule": [
+        {
+          "day": "Wednesday",
+          "period": "3",
+          "class": "9C"
+        },
+        {
+          "day": "Thursday",
+          "period": "4",
+          "class": "10B"
+        }
+      ],
+      "feedback": [
+        {
+          "from": "Student",
+          "text": "Makes lessons fun!",
+          "date": "2025-05-18"
+        }
+      ]
+    },
+    {
+      "id": "5f67",
+      "name": "Dietlof Meyer",
+      "email": "dietlofmeyer@gmail.com",
+      "phone": "",
+      "experienceYears": 3,
+      "subjects": [
+        "Math",
+        "History",
+        "Biology"
+      ],
+      "classes": [
+        "11A",
+        "10B",
+        "8B"
+      ],
+      "tags": [
+        "Newcomer"
+      ],
+      "qualifications": [
+        "PhD"
+      ],
+      "awards": [
+        "Excellence Award"
+      ],
+      "schedule": []
+    },
+    {
+      "id": "69f5",
+      "name": "Samantha Fox",
+      "email": "fsam@example.xom",
+      "phone": "",
+      "experienceYears": 7,
+      "subjects": [
+        "Math",
+        "Science",
+        "English",
+        "Geography"
+      ],
+      "classes": [
+        "10A",
+        "9B",
+        "11A",
+        "12B",
+        "11B",
+        "12A"
+      ],
+      "tags": [
+        "Head of Department"
+      ],
+      "qualifications": [
+        "M.Ed"
+      ],
+      "awards": [
+        "Best Teacher"
+      ],
+      "schedule": []
+    }
+  ]
+}

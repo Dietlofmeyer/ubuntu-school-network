@@ -1,0 +1,185 @@
+.student-extracurricular-section {
+  background: var(--color-bg-card, #23232b);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px var(--color-shadow-card, #b47bff22);
+}
+
+.student-extracurricular-title {
+  color: var(--color-primary, #b47bff);
+  margin-bottom: 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.student-extracurricular-empty {
+  color: var(--color-muted, #b0b8c1);
+  font-style: italic;
+  padding: 0.7rem 0;
+}
+
+.student-extracurricular-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.student-extracurricular-card {
+  background: var(--color-bg-card-alt, #23262e);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  min-width: 260px;
+  max-width: 340px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px var(--color-shadow-card, #b47bff22);
+}
+
+.student-extracurricular-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.student-extracurricular-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-accent, #4fd1ff);
+}
+
+.student-extracurricular-teacher {
+  font-size: 0.97rem;
+  color: var(--color-muted, #b0b8c1);
+}
+
+.student-extracurricular-desc {
+  color: var(--color-text, #eaf1fb);
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+}
+
+.student-extracurricular-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.student-extracurricular-date {
+  color: var(--color-muted, #b0b8c1);
+  font-size: 0.93rem;
+}
+
+.student-extracurricular-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 1.2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.15s, transform 0.12s;
+  box-shadow: 0 2px 8px var(--color-shadow-btn, #b47bff22);
+}
+
+.student-extracurricular-btn.signup {
+  background: var(--color-btn-gradient, var(--color-btn-gradient));
+  color: var(--color-btn-text, #232946);
+}
+.student-extracurricular-btn.signup:hover {
+  background: var(--color-btn-gradient-hover, var(--color-btn-gradient-hover));
+  color: var(--color-btn-text);
+  box-shadow: 0 4px 18px var(--color-shadow-btn-hover, #b47bff44);
+  transform: translateY(-2px) scale(1.03);
+}
+.student-extracurricular-btn.signup:active {
+  background: var(--color-accent, #4fd1ff);
+  color: var(--color-btn-text);
+  transform: scale(0.98);
+}
+
+.student-extracurricular-btn.withdraw {
+  background: var(--color-danger, #ff6b6b);
+  color: var(--color-btn-text);
+}
+.student-extracurricular-btn.withdraw:hover {
+  background: var(--color-danger-hover, #ff3b3b);
+  color: var(--color-btn-text);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .student-extracurricular-section {
+    padding: 1.3rem 1.5rem;
+  }
+
+  .student-extracurricular-card {
+    min-width: 240px;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .student-extracurricular-section {
+    padding: 1.2rem 1rem;
+  }
+
+  .student-extracurricular-list {
+    gap: 1rem;
+  }
+
+  .student-extracurricular-card {
+    min-width: 200px;
+    max-width: 100%;
+    flex: 1 1 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .student-extracurricular-section {
+    padding: 1rem 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .student-extracurricular-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .student-extracurricular-list {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .student-extracurricular-card {
+    min-width: auto;
+    max-width: 100%;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .student-extracurricular-name {
+    font-size: 1rem;
+  }
+
+  .student-extracurricular-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-extracurricular-section {
+    padding: 0.8rem 0.6rem;
+  }
+
+  .student-extracurricular-title {
+    font-size: 1.1rem;
+  }
+
+  .student-extracurricular-card {
+    padding: 0.8rem;
+  }
+}

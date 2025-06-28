@@ -1,0 +1,269 @@
+/* Mobile-first, clean, card-based report card modal */
+
+.rc-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: var(--color-modal-bg, rgba(24, 26, 31, 0.92));
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.rc-modal {
+  background: transparent;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 100vh;
+  box-sizing: border-box;
+}
+
+.rc-card {
+  background: var(--color-bg-card-alt, #23262e);
+  border-radius: 16px;
+  box-shadow: 0 4px 32px var(--color-shadow-card, rgba(180, 123, 255, 0.13));
+  padding: 1.2rem 0.7rem 1rem 0.7rem;
+  margin: 1.2rem auto 0 auto;
+  max-width: 420px;
+  width: 98vw;
+  color: var(--color-text, #eaf1fb);
+  border: 1.5px solid var(--color-border, #31364a);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.rc-header {
+  text-align: center;
+  background: var(
+    --color-header-gradient,
+    linear-gradient(90deg, #b47bff 0%, #4fd1ff 100%)
+  );
+  color: var(--color-header-text, #232946);
+  border-radius: 14px 14px 0 0;
+  padding: 1.1rem 0.5rem 1rem 0.5rem;
+  margin: -1.2rem -0.7rem 0.7rem -0.7rem;
+  box-shadow: 0 2px 12px var(--color-shadow-header, rgba(123, 176, 255, 0.06));
+}
+.rc-school-logo {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+}
+.rc-school-name {
+  color: var(--color-primary, #b47bff);
+  font-weight: 700;
+  font-size: 1.08rem;
+}
+.rc-title {
+  font-weight: 700;
+  font-size: 1.13rem;
+  margin-bottom: 0.2rem;
+}
+.rc-term {
+  color: var(--color-accent, #4fd1ff);
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.rc-student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 1.01rem;
+  background: var(--color-bg-card, #232946);
+  border-radius: 8px;
+  padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+  border: 1px solid var(--color-border, #31364a);
+  box-sizing: border-box;
+}
+
+.rc-subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Subject card for mobile */
+.rc-subject-card {
+  background: var(--color-bg-card, #20222b);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--color-shadow-card, #b47bff22);
+  padding: 1rem 0.7rem 0.7rem 0.7rem;
+  border: 1px solid var(--color-border, #31364a);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.rc-label {
+  color: var(--color-accent, #4fd1ff);
+  font-weight: 700;
+  font-size: 1.01rem;
+  margin-bottom: 0.1em;
+}
+
+.rc-value {
+  color: var(--color-text, #eaf1fb);
+  font-size: 1.09rem;
+  margin-bottom: 0.4em;
+  word-break: break-word;
+}
+
+.rc-muted {
+  color: var(--color-muted, #b0b8c1);
+  font-style: italic;
+}
+
+.rc-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.01rem;
+  background: var(--color-bg-card, #232946);
+  border-radius: 8px;
+  padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+  border: 1px solid var(--color-border, #31364a);
+  box-sizing: border-box;
+}
+
+.rc-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.2rem auto 0 auto;
+  max-width: 420px;
+  width: 98vw;
+  box-sizing: border-box;
+}
+
+.rc-btn {
+  background: var(
+    --color-btn-gradient,
+    linear-gradient(90deg, #4fd1ff 0%, #b47bff 100%)
+  );
+  color: var(--color-btn-text, #232946);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--color-shadow-btn, #b47bff22);
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.12s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.rc-btn:hover {
+  background: var(
+    --color-btn-gradient-hover,
+    linear-gradient(90deg, #4fd18b 0%, #b47bff 100%)
+  );
+  color: #fff;
+  box-shadow: 0 4px 18px var(--color-shadow-btn-hover, #b47bff44);
+  transform: translateY(-2px) scale(1.03);
+}
+.rc-btn:active {
+  background: var(--color-accent, #4fd1ff);
+  color: #fff;
+  transform: scale(0.98);
+}
+
+/* Tablet/Desktop adjustments */
+@media (min-width: 900px) {
+  .rc-modal-bg {
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  .rc-modal {
+    min-width: 340px;
+    width: 100%;
+    max-width: none;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .rc-card,
+  .rc-actions {
+    max-width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .rc-header {
+    padding: 1.2rem;
+    margin: 0 0 1.2rem 0;
+  }
+  .rc-school-logo {
+    font-size: 2.5rem;
+  }
+  .rc-school-name {
+    font-size: 1.2rem;
+  }
+  .rc-title {
+    font-size: 1.2rem;
+  }
+  .rc-term {
+    font-size: 1.1rem;
+  }
+  .rc-student-info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+  }
+  .rc-subjects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 0.5rem;
+  }
+  .rc-subject-card {
+    min-width: 0;
+    background: var(--color-bg-card, #20222b);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--color-shadow-card, #b47bff22);
+    padding: 1.1rem 1rem 0.9rem 1rem;
+    border: 1px solid var(--color-border, #31364a);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .rc-label {
+    font-size: 1.08rem;
+  }
+  .rc-value {
+    font-size: 1.13rem;
+  }
+  .rc-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    font-size: 1.08rem;
+  }
+  .rc-actions {
+    max-width: 700px;
+    padding: 0 1.2rem 1.2rem 1.2rem;
+  }
+}

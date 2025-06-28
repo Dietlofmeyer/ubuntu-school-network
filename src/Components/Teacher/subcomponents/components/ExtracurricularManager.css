@@ -1,0 +1,396 @@
+.extracurricular-section {
+  background: var(--color-bg, #181c25);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px var(--color-shadow-card, #0002);
+}
+
+.extracurricular-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.extracurricular-title {
+  color: var(--color-primary, #7bb0ff);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.extracurricular-add-btn {
+  background: var(
+    --color-btn-gradient,
+    linear-gradient(90deg, #7bb0ff 0%, #4f8cff 100%)
+  );
+  color: var(--color-btn-text, #232946);
+  border: none;
+  border-radius: 22px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 12px var(--color-shadow-btn, #7bb0ff33);
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+  margin-left: 0.5rem;
+}
+
+.extracurricular-add-btn:hover,
+.extracurricular-add-btn:focus {
+  background: var(
+    --color-btn-gradient-hover,
+    linear-gradient(90deg, #4f8cff 0%, #7bb0ff 100%)
+  );
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 18px var(--color-shadow-btn-hover, #7bb0ff55);
+}
+
+.extracurricular-add-btn:active {
+  background: var(--color-accent, #4f8cff);
+  color: #fff;
+  transform: scale(0.98);
+}
+
+.extracurricular-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.extracurricular-form input,
+.extracurricular-form textarea {
+  background: var(--color-bg-card-alt, #23283a);
+  color: var(--color-text, #eaf1fb);
+  border: 1px solid var(--color-border, #31364a);
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.extracurricular-actions {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.extracurricular-actions button {
+  background: var(--color-primary, #7bb0ff);
+  color: var(--color-bg, #181c25);
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.extracurricular-actions button:disabled {
+  background: var(--color-disabled, #3c4a6e);
+  cursor: not-allowed;
+}
+
+.extracurricular-list {
+  margin-top: 0.5rem;
+}
+
+.extracurricular-empty {
+  color: var(--color-muted, #b0b8c9);
+  font-style: italic;
+  padding: 0.7rem 0;
+}
+
+.extracurricular-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-card-alt, #23283a);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.extracurricular-table th,
+.extracurricular-table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--color-border, #31364a);
+  color: var(--color-text, #eaf1fb);
+}
+
+.extracurricular-table th {
+  background: var(--color-bg-card, #20243a);
+  color: var(--color-primary, #7bb0ff);
+  font-weight: 700;
+}
+
+.extracurricular-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Modal styles */
+.extracurricular-modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-modal-bg, rgba(0, 0, 0, 0.55));
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.extracurricular-modal {
+  background: var(--color-bg-card-alt, #23283a);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 4px 24px var(--color-shadow-card, #0005);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.extracurricular-modal-title {
+  color: var(--color-primary, #7bb0ff);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.extracurricular-modal-close {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  color: var(--color-primary, #7bb0ff);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.extracurricular-modal-close:hover {
+  color: var(--color-accent, #4f8cff);
+}
+
+.extracurricular-modal-content {
+  color: var(--color-text, #eaf1fb);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.extracurricular-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+
+.extracurricular-modal-actions button {
+  background: var(--color-primary, #7bb0ff);
+  color: var(--color-bg, #181c25);
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.extracurricular-modal-actions button:disabled {
+  background: var(--color-disabled, #3c4a6e);
+  cursor: not-allowed;
+}
+
+/* Floating Add Button */
+.extracurricular-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(
+    --color-btn-gradient,
+    linear-gradient(90deg, #7bb0ff 0%, #4f8cff 100%)
+  );
+  color: var(--color-btn-text, #232946);
+  border: none;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 24px var(--color-shadow-btn-hover, #7bb0ff55);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+}
+.extracurricular-fab:hover {
+  background: var(
+    --color-btn-gradient-hover,
+    linear-gradient(90deg, #4f8cff 0%, #7bb0ff 100%)
+  );
+  color: #fff;
+  transform: scale(1.07);
+}
+
+/* Card Layout */
+.extracurricular-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.extracurricular-card {
+  background: var(--color-bg-card, #232946);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px var(--color-shadow-card, rgba(80, 131, 175, 0.09));
+  padding: 1.5rem 1.7rem 1.2rem 1.7rem;
+  min-width: 270px;
+  max-width: 340px;
+  flex: 1 1 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: box-shadow 0.18s, transform 0.12s;
+}
+.extracurricular-card:hover {
+  box-shadow: 0 6px 24px var(--color-shadow-card-hover, #7bb0ff33);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.extracurricular-card-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--color-primary, #7bb0ff);
+  margin-bottom: 0.5rem;
+}
+
+.extracurricular-card-desc {
+  color: var(--color-text, #eaf1fb);
+  font-size: 1.01rem;
+  margin-bottom: 0.7rem;
+  min-height: 48px;
+}
+
+.extracurricular-card-meta {
+  color: var(--color-muted, #b0b8c9);
+  font-size: 0.97rem;
+  margin-bottom: 0.5rem;
+}
+
+.extracurricular-card-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.extracurricular-action-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary, #7bb0ff);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.3rem 0.7rem;
+  border-radius: 7px;
+  transition: background 0.15s, color 0.15s;
+}
+.extracurricular-action-btn:hover {
+  background: var(--color-bg-card, #232946);
+  color: var(--color-danger, #ff6b6b);
+}
+
+/* Responsive: Stack table as cards on mobile, no horizontal scroll */
+@media (max-width: 900px) {
+  .extracurricular-section {
+    padding: 1.2rem 0.7rem;
+  }
+  .extracurricular-title {
+    font-size: 1.1rem;
+  }
+  .extracurricular-add-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+  }
+  .extracurricular-table,
+  .extracurricular-table thead,
+  .extracurricular-table tbody,
+  .extracurricular-table tr,
+  .extracurricular-table th,
+  .extracurricular-table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .extracurricular-table thead {
+    display: none;
+  }
+  .extracurricular-table tr {
+    margin-bottom: 1.2rem;
+    background: var(--color-bg-card, #232946);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--color-shadow-card, rgba(80, 131, 175, 0.06));
+    padding: 1rem 0.7rem;
+  }
+  .extracurricular-table td {
+    padding: 0.5rem 0.7rem;
+    border: none;
+    position: relative;
+    text-align: left;
+  }
+  .extracurricular-table td:before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--color-primary, #7bb0ff);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.98rem;
+  }
+  .extracurricular-modal {
+    min-width: 0;
+    width: 95vw;
+    padding: 1.2rem 0.7rem;
+  }
+  .extracurricular-card-list {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .extracurricular-card {
+    max-width: 100%;
+    min-width: 0;
+    padding: 1.1rem 1rem;
+  }
+  .extracurricular-fab {
+    bottom: 18px;
+    right: 18px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .extracurricular-section {
+    padding: 1rem 0.3rem;
+  }
+  .extracurricular-title {
+    font-size: 1rem;
+  }
+  .extracurricular-add-btn {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.9rem;
+  }
+  .extracurricular-modal {
+    padding: 1rem 0.5rem;
+  }
+}
