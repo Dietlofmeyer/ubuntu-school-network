@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../../AuthContext";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 import {
   collection,
   query,
@@ -41,6 +42,7 @@ interface Student {
 const GuardianDash: React.FC = () => {
   const { t } = useTranslation();
   const { profile, user } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("overview");
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<GuardianStats>({
@@ -195,8 +197,11 @@ const GuardianDash: React.FC = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      navigate("/");
     } catch (error) {
-      // Error handling for logout
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
     }
   };
 

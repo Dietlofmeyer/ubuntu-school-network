@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { useAuth } from "../../AuthContext";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import "./StaffDash.css";
 
@@ -22,6 +23,7 @@ type UserProfile = {
 const StaffDash: React.FC = () => {
   const { profile } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // State for user data
   const [students, setStudents] = useState<UserProfile[]>([]);
@@ -147,7 +149,14 @@ const StaffDash: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
+    }
   };
 
   const handleViewUser = (user: UserProfile) => {

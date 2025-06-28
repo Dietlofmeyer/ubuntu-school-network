@@ -12,6 +12,7 @@ import {
 import { db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 import { triggerAchievementCheck } from "../../utils/achievementEngine";
 
 // Import components
@@ -71,6 +72,7 @@ type MarkTemplate = {
 const TeacherDashboard: React.FC = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // Page state
   const [currentPage, setCurrentPage] = useState<
@@ -338,8 +340,11 @@ const TeacherDashboard: React.FC = () => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      navigate("/");
     } catch (error) {
       console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
     }
   };
 

@@ -14,6 +14,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import ParentSettingsModal from "./ParentSettingsModal";
 import "./ParentDash.css";
@@ -34,6 +35,7 @@ function ParentDash() {
   const { t, i18n } = useTranslation();
   const { user, profile } = useAuth();
   const { theme, setTheme, themeOptions } = useTheme();
+  const navigate = useNavigate();
   const [children, setChildren] = useState<ChildProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
@@ -96,8 +98,14 @@ function ParentDash() {
   };
 
   const handleSignOut = async () => {
-    await signOut(auth);
-    window.location.reload();
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
+    }
   };
 
   // Link child logic (supports UID or email, always stores UID)

@@ -11,6 +11,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { subjectIcons } from "../../data/constants";
 import "./studentDash.css";
 import ReportCardsTable from "./ReportCardsTable";
@@ -54,6 +55,7 @@ function StudentDash() {
   const { t, i18n } = useTranslation();
   const { user, profile } = useAuth();
   const { theme, setTheme, themeOptions } = useTheme();
+  const navigate = useNavigate();
   const [marks, setMarks] = useState<Mark[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [awards, setAwards] = useState<Award[]>([]);
@@ -205,8 +207,14 @@ function StudentDash() {
   }, []);
 
   const handleSignOut = async () => {
-    await signOut(auth);
-    window.location.reload();
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
+    }
   };
 
   const totalDemeritPoints = demerits.reduce((sum, d) => sum + d.points, 0);

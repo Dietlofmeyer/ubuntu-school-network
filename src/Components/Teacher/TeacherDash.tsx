@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { getCurrentTerm } from "../../utils/term";
 import ExtracurricularManager from "./subcomponents/components/ExtracurricularManager";
 import StudentCard from "./subcomponents/components/StudentCard";
@@ -119,6 +120,7 @@ function TeacherDash() {
   const { t, i18n } = useTranslation();
   const { user, profile } = useAuth();
   const { theme, setTheme, themeOptions } = useTheme(); // Use centralized theme context
+  const navigate = useNavigate();
   const [teacher, setTeacher] = useState<TeacherProfile | null>(null);
 
   // Homeroom students
@@ -486,8 +488,14 @@ function TeacherDash() {
 
   // Sign out handler
   const handleSignOut = async () => {
-    await signOut(auth);
-    window.location.reload();
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
+    }
   };
 
   // Open add marks dialog (subject section only)

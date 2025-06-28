@@ -11,7 +11,7 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./DevDash.css";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { getAuth, signOut } from "firebase/auth";
@@ -36,6 +36,7 @@ type FeedbackDoc = {
 
 const DevDash: React.FC = () => {
   const { profile } = useAuth();
+  const navigate = useNavigate();
 
   // Add schools to state
   const [userStats, setUserStats] = useState<{
@@ -229,8 +230,14 @@ const DevDash: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    await signOut(getAuth());
-    window.location.reload(); // Or navigate to login page if you have routing
+    try {
+      await signOut(getAuth());
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      // Fallback to home page even if sign out fails
+      navigate("/");
+    }
   };
 
   const handleResolveError = async (errorId: string) => {
