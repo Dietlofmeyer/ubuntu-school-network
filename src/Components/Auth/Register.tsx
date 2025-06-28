@@ -105,8 +105,13 @@ function Register() {
   useEffect(() => {
     const validateToken = async () => {
       const token = searchParams.get("token");
+      
+      console.log("Registration page loaded");
+      console.log("URL search params:", searchParams.toString());
+      console.log("Token from URL:", token);
 
       if (token) {
+        console.log("Validating token...");
         setTokenLoading(true);
         setTokenError("");
 
@@ -114,11 +119,15 @@ function Register() {
           const tokenData = await SecureRegistrationService.validateToken(
             token
           );
+          
+          console.log("Token validation result:", tokenData);
 
           if (tokenData) {
             setRegistrationToken(tokenData);
             setEmail(tokenData.email);
+            console.log("Token validated successfully for:", tokenData.email, "Role:", tokenData.role);
             setSchoolId(tokenData.schoolId);
+            console.log("Token validated successfully for:", tokenData.email, "Role:", tokenData.role);
             setUserRole(tokenData.role);
 
             // Pre-fill metadata if available
@@ -130,6 +139,7 @@ function Register() {
             // Skip to step 2 for token-based registration
             setStep(2);
           } else {
+            console.log("Token validation failed: invalid or expired token");
             setTokenError(
               t("invalid_or_expired_token") ||
                 "Invalid or expired registration token"
@@ -145,6 +155,7 @@ function Register() {
 
         setTokenLoading(false);
       } else {
+        console.log("No token provided in URL, showing manual registration form");
         setTokenLoading(false);
       }
     };
