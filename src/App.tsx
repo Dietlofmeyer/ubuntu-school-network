@@ -272,6 +272,9 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
+              {/* Catch-all route - redirects to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
 
             {/* Floating Bug Report Button */}
