@@ -147,11 +147,8 @@ service cloud.firestore {
 
     // REGISTRATION TOKENS COLLECTION
     match /registrationTokens/{tokenId} {
-      // Allow admins to create, read, update, and delete registration tokens
-      allow create, read, update, delete: if isAdmin() || isPrincipal();
-      
-      // Allow developers to read tokens for debugging
-      allow read: if isDeveloper();
+      // Allow admins, principals, and developers to create, read, update, and delete registration tokens
+      allow create, read, update, delete: if isAdmin() || isPrincipal() || isDeveloper();
       
       // Allow public read access for token validation during registration
       allow read: if true;
