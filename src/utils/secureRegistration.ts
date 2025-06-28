@@ -191,7 +191,15 @@ export class SecureRegistrationService {
    */
   static generateRegistrationUrl(token: string, baseUrl?: string): string {
     const base = baseUrl || window.location.origin;
-    return `${base}/register?token=${token}`;
+    
+    // Add GitHub Pages basename if we're in production and on GitHub Pages
+    const isGitHubPages = 
+      process.env.NODE_ENV === "production" && 
+      process.env.GITHUB_PAGES === "true";
+    
+    const pathPrefix = isGitHubPages ? "/ubuntu-school-network" : "";
+    
+    return `${base}${pathPrefix}/register?token=${token}`;
   }
 
   /**
