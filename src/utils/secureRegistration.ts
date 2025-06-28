@@ -14,7 +14,7 @@ export interface RegistrationToken {
   id?: string;
   token: string;
   email: string;
-  role: "student" | "teacher" | "guardian" | "staff";
+  role: "student" | "teacher" | "guardian" | "staff" | "admin";
   schoolId: string;
   createdBy: string;
   createdAt?: any; // Firestore Timestamp
@@ -25,6 +25,8 @@ export interface RegistrationToken {
     grade?: string; // For students
     subjects?: string[]; // For teachers
     name?: string; // Pre-filled name
+    schoolName?: string; // For school admin
+    isSchoolAdmin?: boolean; // For school admin
   };
 }
 
@@ -206,5 +208,28 @@ export class SecureRegistrationService {
     // - Firebase Functions with email templates
 
     return true;
+  }
+
+  /**
+   * Create a school admin registration token after school approval
+   */
+  static async createSchoolAdminToken(
+    schoolId: string,
+    principalEmail: string,
+    schoolName: string,
+    createdBy: string
+  ): Promise<string> {
+    const tokenData = {
+      email: principalEmail.toLowerCase(),
+      role: "admin" as const,
+      schoolId,
+      createdBy,
+      metadata: {
+        schoolName,
+        isSchoolAdmin: true,
+      },
+    };
+
+    return this.createRegistrationToken(tokenData);
   }
 }

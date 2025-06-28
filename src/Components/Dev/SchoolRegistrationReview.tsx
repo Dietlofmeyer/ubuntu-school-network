@@ -7,12 +7,12 @@ import {
   doc,
   updateDoc,
   orderBy,
-  Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../AuthContext";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { SecureRegistrationService } from "../../utils/secureRegistration";
 import "./SchoolRegistrationReview.css";
 
 interface SchoolRegistration {
@@ -42,6 +42,8 @@ const SchoolRegistrationReview: React.FC = () => {
     useState<SchoolRegistration | null>(null);
   const [reviewNotes, setReviewNotes] = useState("");
   const [processingId, setProcessingId] = useState<string | null>(null);
+  const [generatedToken, setGeneratedToken] = useState<string | null>(null);
+  const [registrationUrl, setRegistrationUrl] = useState<string | null>(null);
 
   const { profile } = useAuth();
   const { t } = useTranslation();
@@ -110,6 +112,18 @@ const SchoolRegistrationReview: React.FC = () => {
 
     try {
       setProcessingId(registration.id);
+      
+      // Generate secure token for school admin registration
+      const token = await SecureRegistrationService.createSchoolAdminToken(
+        registration.id,
+        registration.principalEmail,
+        registration.name,
+        profile.email
+      );
+
+      // Generate registration URL
+      const regUrl = SecureRegistrationService.generateRegistrationUrl(token);
+      
       const docRef = doc(db, "schools", registration.id);
 
       await updateDoc(docRef, {
@@ -118,11 +132,18 @@ const SchoolRegistrationReview: React.FC = () => {
         reviewNotes,
         reviewedBy: profile.email,
         reviewedAt: new Date().toISOString(),
+        adminRegistrationToken: token,
+        adminRegistrationUrl: regUrl,
       });
+
+      // Set the token and URL for display
+      setGeneratedToken(token);
+      setRegistrationUrl(regUrl);
 
       // Remove from pending list
       setRegistrations((prev) => prev.filter((r) => r.id !== registration.id));
-      setSelectedRegistration(null);
+      
+      // Don't close the modal immediately - show the token info
       setReviewNotes("");
     } catch (err: any) {
       console.error("Error approving registration:", err);
@@ -170,6 +191,14 @@ const SchoolRegistrationReview: React.FC = () => {
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
+
+  const closeModal = () => {
+    setSelectedRegistration(null);
+    setReviewNotes("");
+    setError(null);
+    setGeneratedToken(null);
+    setRegistrationUrl(null);
   };
 
   if (loading) {
@@ -260,14 +289,7 @@ const SchoolRegistrationReview: React.FC = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h2>Review: {selectedRegistration.name}</h2>
-              <button
-                className="close-btn"
-                onClick={() => {
-                  setSelectedRegistration(null);
-                  setReviewNotes("");
-                  setError(null);
-                }}
-              >
+              <button className="close-btn" onClick={closeModal}>
                 ×
               </button>
             </div>
@@ -310,44 +332,92 @@ const SchoolRegistrationReview: React.FC = () => {
                 </div>
               </div>
 
-              <div className="review-section">
-                <h3>Review Notes</h3>
-                <textarea
-                  value={reviewNotes}
-                  onChange={(e) => setReviewNotes(e.target.value)}
-                  placeholder="Add notes about this registration (required for rejection)..."
-                  rows={4}
-                />
-              </div>
+              {!registrationUrl && (
+                <div className="review-section">
+                  <h3>Review Notes</h3>
+                  <textarea
+                    value={reviewNotes}
+                    onChange={(e) => setReviewNotes(e.target.value)}
+                    placeholder="Add notes about this registration (required for rejection)..."
+                    rows={4}
+                  />
+                </div>
+              )}
+
+              {/* Show token information after approval */}
+              {registrationUrl && (
+                <div className="token-section">
+                  <h3>✅ School Approved - Admin Registration Ready</h3>
+                  <div className="token-info">
+                    <p>
+                      The school has been approved! Share the secure registration link below with the principal at{" "}
+                      <strong>{selectedRegistration?.principalEmail}</strong> to create their admin account:
+                    </p>
+                    
+                    <div className="url-display">
+                      <label>Secure Registration URL:</label>
+                      <div className="url-container">
+                        <input
+                          type="text"
+                          value={registrationUrl}
+                          readOnly
+                          className="token-url"
+                        />
+                        <button
+                          className="copy-btn"
+                          onClick={() => {
+                            navigator.clipboard.writeText(registrationUrl);
+                            // Could add a toast notification here
+                          }}
+                        >
+                          Copy
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="token-instructions">
+                      <h4>Instructions:</h4>
+                      <ol>
+                        <li>Copy the secure registration URL above</li>
+                        <li>Send it securely to the principal via email or other secure communication</li>
+                        <li>The principal will use this URL to create their admin account</li>
+                        <li>The URL expires in 48 hours for security</li>
+                        <li>Once the principal completes registration, they can log in and start managing their school</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="modal-actions">
-              <button
-                className="btn-approve"
-                onClick={() => handleApprove(selectedRegistration)}
-                disabled={processingId === selectedRegistration.id}
-              >
-                {processingId === selectedRegistration.id
-                  ? "Approving..."
-                  : "Approve"}
-              </button>
-              <button
-                className="btn-reject"
-                onClick={() => handleReject(selectedRegistration)}
-                disabled={processingId === selectedRegistration.id}
-              >
-                {processingId === selectedRegistration.id
-                  ? "Rejecting..."
-                  : "Reject"}
-              </button>
-              <button
-                className="btn-cancel"
-                onClick={() => {
-                  setSelectedRegistration(null);
-                  setReviewNotes("");
-                  setError(null);
-                }}
-              >
+              {!registrationUrl ? (
+                <>
+                  <button
+                    className="btn-approve"
+                    onClick={() => handleApprove(selectedRegistration)}
+                    disabled={processingId === selectedRegistration.id}
+                  >
+                    {processingId === selectedRegistration.id
+                      ? "Approving..."
+                      : "Approve"}
+                  </button>
+                  <button
+                    className="btn-reject"
+                    onClick={() => handleReject(selectedRegistration)}
+                    disabled={processingId === selectedRegistration.id}
+                  >
+                    {processingId === selectedRegistration.id
+                      ? "Rejecting..."
+                      : "Reject"}
+                  </button>
+                </>
+              ) : (
+                <button className="btn-primary" onClick={closeModal}>
+                  Done
+                </button>
+              )}
+              <button className="btn-cancel" onClick={closeModal}>
                 Cancel
               </button>
             </div>
