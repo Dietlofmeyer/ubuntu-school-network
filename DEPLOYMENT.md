@@ -25,7 +25,7 @@ firebase deploy
 ### Automatic Deployment
 
 - **Trigger**: Push to `main` branch or create a tag
-- **URL**: https://school-system-aa9b4.web.app
+- **URL**: https://ubuntu-school-network.web.app (update after Firebase project rename)
 - **GitHub Action**: `.github/workflows/deploy-production.yml`
 
 ### Setup Requirements
@@ -87,7 +87,7 @@ npm run deploy:gh-pages
 
 For Firebase deployment, add these secrets to your GitHub repository:
 
-1. **FIREBASE_SERVICE_ACCOUNT_SCHOOL_SYSTEM_AA9B4**
+1. **FIREBASE_SERVICE_ACCOUNT_UBUNTU_SCHOOL_NETWORK**
    - Firebase service account JSON key
    - Get from Firebase Console > Project Settings > Service Accounts
 
